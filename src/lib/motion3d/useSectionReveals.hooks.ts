@@ -73,7 +73,19 @@ export const useSectionReveals = (contentRefs: ContentRefs): void => {
           gsap.to(rootElements, { autoAlpha: 0, duration: 0.18, ease: 'power1.out', overwrite: 'auto' });
         },
         reveal: (section) => {
-          gsap.set(rootElements, { autoAlpha: 1 });
+          roots.forEach(({ section: rootSection, root }) => {
+            if (rootSection === section) {
+              /* The destination root can be a visible container (e.g. the
+                 contact card), so it fades in instead of popping. */
+              gsap.fromTo(
+                root,
+                { autoAlpha: 0 },
+                { autoAlpha: 1, duration: 0.45, ease: 'power2.out', overwrite: 'auto' },
+              );
+            } else {
+              gsap.set(root, { autoAlpha: 1 });
+            }
+          });
           timelines.get(section)?.play(0);
         },
         restore: () => {

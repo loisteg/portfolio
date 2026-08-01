@@ -4,10 +4,21 @@
   position: relative;
   min-height: 400svh;
   overflow: clip;
+  background: #050505;
+}
+
+/* NOTE: the gradient glow lives on a fixed layer (like the noise and ambient
+   lights) so the background stays perfectly still while the page flies
+   between sections. */
+.portfolio-shell::after {
+  position: fixed;
+  z-index: 0;
+  inset: 0;
   background:
     radial-gradient(circle at 72% 20%, rgba(82, 91, 113, 0.1), transparent 28%),
-    radial-gradient(circle at 18% 66%, rgba(100, 105, 120, 0.07), transparent 30%),
-    #050505;
+    radial-gradient(circle at 18% 66%, rgba(100, 105, 120, 0.07), transparent 30%);
+  pointer-events: none;
+  content: "";
 }
 
 .portfolio-shell::before {
