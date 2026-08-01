@@ -1,0 +1,298 @@
+@media (max-width: 1023px) {
+  .story-section {
+    padding-inline: 7vw;
+  }
+
+  .story-section--profile,
+  .story-section--about,
+  .story-section--contact {
+    grid-template-columns: minmax(0, 1fr) minmax(270px, 0.8fr);
+    gap: 4vw;
+  }
+
+  .site-nav__status {
+    display: none;
+  }
+
+  .site-nav {
+    grid-template-columns: auto 1fr;
+  }
+
+  .phone-anchor--profile {
+    right: 3%;
+    width: 38vw;
+  }
+
+  .phone-anchor--about {
+    left: 1%;
+    width: 39vw;
+  }
+
+  .phone-anchor--projects {
+    width: min(40vw, 380px);
+  }
+
+  .phone-anchor--contact {
+    right: 2%;
+    width: 39vw;
+  }
+
+  .capability-cards {
+    gap: 8px;
+  }
+
+  .capability-cards li {
+    padding: 13px 14px;
+  }
+
+  /* The phone dominates this screen below the desktop breakpoint and the
+     same intro lives inside the phone launcher. */
+  .story-section--projects .projects-copy {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --nav-height: 56px;
+  }
+
+  .site-nav {
+    top: max(10px, env(safe-area-inset-top));
+    width: calc(100vw - 24px);
+    min-height: var(--nav-height);
+    padding: 6px;
+  }
+
+  .site-nav__mark {
+    width: 43px;
+    height: 43px;
+  }
+
+  .site-nav__links {
+    justify-content: space-around;
+    gap: 0;
+  }
+
+  .site-nav__links a {
+    padding: 15px 6px;
+    font-size: 8px;
+    letter-spacing: 0.08em;
+  }
+
+  .story-section {
+    display: block;
+    height: 100svh;
+    min-height: 100svh;
+    padding: calc(var(--nav-height) + 42px) 20px max(30px, env(safe-area-inset-bottom));
+  }
+
+  .profile-copy h1 {
+    margin-bottom: 16px;
+    font-size: clamp(48px, 15vw, 70px);
+    line-height: 0.82;
+  }
+
+  .eyebrow {
+    margin-bottom: 14px;
+    font-size: 8px;
+  }
+
+  .role-stack {
+    margin-bottom: 12px;
+  }
+
+  .role-stack p {
+    margin: 3px 0;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+  }
+
+  .profile-copy__intro {
+    max-width: 340px;
+    margin-bottom: 14px;
+    font-size: 13px;
+  }
+
+  .profile-tags {
+    margin-bottom: 16px;
+    gap: 6px;
+  }
+
+  .profile-tags li {
+    padding: 7px 9px;
+    font-size: 7px;
+  }
+
+  .profile-actions {
+    gap: 8px;
+  }
+
+  .button {
+    min-width: 0;
+    min-height: 46px;
+    padding: 0 13px;
+    font-size: 8px;
+  }
+
+  .phone-anchor--profile {
+    top: 55%;
+    right: auto;
+    left: 50%;
+    width: min(58vw, 250px);
+    height: 38%;
+    transform: translateX(-50%);
+  }
+
+  .phone-anchor--about {
+    top: 8%;
+    left: 50%;
+    width: min(54vw, 240px);
+    height: 40%;
+    transform: translateX(-50%);
+  }
+
+  .phone-anchor--projects {
+    top: 7%;
+    width: min(88vw, 370px);
+    height: 82%;
+  }
+
+  .phone-anchor--contact {
+    top: 80%;
+    right: auto;
+    left: 50%;
+    width: min(40vw, 170px);
+    height: 18%;
+    transform: translateX(-50%);
+  }
+
+  .about-copy {
+    position: absolute;
+    right: 20px;
+    bottom: 4%;
+    left: 20px;
+    text-align: center;
+  }
+
+  .about-copy h2 {
+    margin-bottom: 10px;
+    font-size: clamp(30px, 9.4vw, 42px);
+  }
+
+  .about-copy > p:not(.eyebrow) {
+    margin-bottom: 8px;
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  /* Keep the first paragraph only on small screens; the phone metrics carry
+     the same story and vertical space is scarce inside a snapped section. */
+  .about-copy > p:nth-of-type(n+3) {
+    display: none;
+  }
+
+  .capability-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 7px;
+    margin-top: 12px;
+  }
+
+  .capability-cards li {
+    gap: 4px;
+    padding: 10px 11px;
+    text-align: left;
+    border-radius: 13px;
+  }
+
+  .capability-cards strong {
+    font-size: 10px;
+  }
+
+  .capability-cards span {
+    font-size: 9px;
+    line-height: 1.35;
+  }
+
+  .story-section--contact {
+    display: block;
+  }
+
+  .contact-card {
+    position: relative;
+    z-index: 21;
+    width: 100%;
+    padding: 20px 18px;
+    border-radius: 27px;
+  }
+
+  .contact-card h2 {
+    margin-bottom: 10px;
+    font-size: clamp(28px, 8.6vw, 38px);
+  }
+
+  .contact-card__intro > p:not(.eyebrow) {
+    margin-bottom: 8px;
+    font-size: 12px;
+  }
+
+  .contact-card__intro > span {
+    margin-top: 10px;
+    font-size: 7px;
+  }
+
+  .contact-card__links {
+    gap: 7px;
+    margin-top: 14px;
+  }
+
+  .contact-card__links a {
+    min-height: 46px;
+    padding: 8px 14px;
+    border-radius: 13px;
+  }
+
+  .contact-card__links span {
+    font-size: 9px;
+  }
+
+  .contact-card__links small {
+    font-size: 8px;
+  }
+
+  .contact-card .contact-card__action {
+    margin-top: 14px;
+  }
+
+  .contact-card__footer {
+    margin-top: 14px;
+    font-size: 9px;
+  }
+
+  .ambient-light {
+    width: 110vw;
+    height: 24vw;
+  }
+
+  .phone-fallback {
+    top: 52%;
+    right: 50%;
+    width: 55vw;
+    transform: translate(50%, -18%);
+  }
+}
+
+@media (max-width: 370px) {
+  .site-nav__links a {
+    padding-inline: 4px;
+    font-size: 7px;
+  }
+
+  .profile-copy h1 {
+    font-size: 44px;
+  }
+
+  .capability-cards span {
+    display: none;
+  }
+}

@@ -1,0 +1,225 @@
+.phone-layer-heading {
+  padding: 10px 5px 20px;
+}
+
+.phone-layer-heading span {
+  display: block;
+  margin-bottom: 8px;
+  color: #8d9099;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.phone-layer-heading strong {
+  display: block;
+  max-width: 230px;
+  font-size: 26px;
+  font-weight: 530;
+  line-height: 1.05;
+  letter-spacing: -0.055em;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 9px;
+}
+
+.metric-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 190px;
+  padding: 16px;
+  overflow: hidden;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.095), rgba(255, 255, 255, 0.025));
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 21px;
+}
+
+.metric-card::before {
+  position: absolute;
+  top: -35px;
+  right: -35px;
+  width: 90px;
+  height: 90px;
+  background: rgba(184, 198, 235, 0.09);
+  border-radius: 50%;
+  content: "";
+}
+
+.metric-card > span {
+  position: absolute;
+  top: 15px;
+  left: 16px;
+  color: #767881;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+}
+
+.metric-card strong {
+  margin-bottom: 10px;
+  font-size: 28px;
+  font-weight: 520;
+  line-height: 0.9;
+  letter-spacing: -0.075em;
+}
+
+.metric-card p {
+  margin: 0;
+  color: #b9bbc2;
+  font-size: 8px;
+  line-height: 1.5;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.metrics-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin: 14px 0 0;
+  padding: 9px 13px;
+  background: rgba(183, 216, 180, 0.1);
+  border: 1px solid rgba(183, 216, 180, 0.26);
+  border-radius: 99px;
+  color: #cfe7cc;
+  font-size: 8px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.metrics-badge i {
+  flex: none;
+  width: 5px;
+  height: 5px;
+  background: #b7d8b4;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(183, 216, 180, 0.8);
+}
+
+.phone-layer-heading--projects {
+  padding-bottom: 14px;
+}
+
+.phone-layer-heading--projects p {
+  margin: 0;
+  max-width: 250px;
+  color: #a9abb3;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.phone-projects {
+  display: grid;
+  gap: 10px;
+}
+
+.phone-project-card {
+  display: grid;
+  grid-template-columns: 1fr 116px;
+  width: 100%;
+  min-height: 198px;
+  padding: 0;
+  overflow: hidden;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.085), rgba(255, 255, 255, 0.028));
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 23px;
+  cursor: pointer;
+  transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.phone-project-card:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.045));
+  border-color: rgba(255, 255, 255, 0.26);
+}
+
+.phone-project-card:focus-visible {
+  outline: 2px solid rgba(245, 245, 247, 0.95);
+  outline-offset: -4px;
+}
+
+.phone-project-card__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 15px 8px 15px 16px;
+}
+
+.phone-project-card__icon {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 9px;
+}
+
+.phone-project-card__copy > span {
+  color: #777a82;
+  font-size: 8px;
+  letter-spacing: 0.14em;
+}
+
+.phone-project-card__copy strong {
+  margin-top: auto;
+  font-size: 17px;
+  font-weight: 540;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+}
+
+.phone-project-card__category {
+  margin: 3px 0 12px;
+  color: #92949b;
+  font-size: 7px;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.phone-project-card__copy small {
+  padding-bottom: 3px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+  font-size: 7px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.phone-project-card__preview {
+  display: block;
+  align-self: center;
+  width: 98px;
+  height: 170px;
+  overflow: hidden;
+  transform: rotate(2deg);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 16px;
+  box-shadow: -14px 20px 36px rgba(0, 0, 0, 0.45);
+}
+
+.phone-project-card:nth-child(2) .phone-project-card__preview {
+  transform: rotate(-2deg);
+}
+
+.phone-project-card__preview img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.phone-screen__glare {
+  position: absolute;
+  z-index: 30;
+  inset: -30% 35% -30% -35%;
+  transform: rotate(12deg);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.035), transparent);
+  pointer-events: none;
+}
