@@ -1,9 +1,9 @@
 import type { RootState } from '@react-three/fiber';
 import { Vector3 } from 'three';
 
-import { FULL_TURN } from './phone-motion.constants';
+import { FULL_TURN, SECTION_FLOAT_STRENGTH } from './phone-motion.constants';
 import { PHONE_HEIGHT, PHONE_WIDTH } from './PhoneModel.constants';
-import type { MotionTarget, PhoneAnchor } from './phone-motion.types';
+import type { MotionTarget, PhoneAnchor, SectionKey } from './phone-motion.types';
 
 const WORLD_ORIGIN = new Vector3(0, 0, 0);
 
@@ -12,11 +12,10 @@ export type TargetResolver = (anchor: PhoneAnchor, depth?: number) => MotionTarg
 /* Converts a DOM anchor box into a world-space pose. The anchor position is
    measured inside its own section, so the result describes the pose valid
    when that section is snapped to the viewport — independent of the current
-   scroll position. */
+   scroll position. Reads camera/size/viewport through the live state getter,
+   so a canvas resize never requires rebuilding the resolver. */
 export const createTargetResolver = (
-  camera: RootState['camera'],
-  size: RootState['size'],
-  viewport: RootState['viewport'],
+  getState: () => RootState,
 ): TargetResolver => (anchor, depth = 0) => {
   const anchorElement = anchor.anchorRef.current;
   const sectionElement = anchor.sectionRef.current;
@@ -25,6 +24,7 @@ export const createTargetResolver = (
     return { x: 0, y: 0, z: depth, scale: 1 };
   }
 
+  const { camera, size, viewport } = getState();
   const anchorRect = anchorElement.getBoundingClientRect();
   const sectionRect = sectionElement.getBoundingClientRect();
   const currentViewport = viewport.getCurrentViewport(camera, WORLD_ORIGIN);
@@ -42,6 +42,10 @@ export const createTargetResolver = (
     scale: Math.min(widthScale, heightScale),
   };
 };
+
+/* Reduced motion keeps the phone perfectly still on every section. */
+export const resolveFloatStrength = (section: SectionKey, isReducedMotion: boolean): number =>
+  isReducedMotion ? 0 : SECTION_FLOAT_STRENGTH[section];
 
 /* Crossfades the outgoing phone-screen layer into the incoming one around a
    timeline label. Blur always settles back to 0 so layers never rest soft. */

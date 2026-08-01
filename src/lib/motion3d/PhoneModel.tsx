@@ -11,30 +11,33 @@ import {
   PHONE_SCREEN_SCALE,
   PHONE_SCREEN_WIDTH,
 } from './PhoneModel.constants';
+import PhoneFloat from './PhoneFloat';
 import { createStyledPhoneScene } from './PhoneModel.helpers';
 import type { PhoneModelProps } from './PhoneModel.types';
 
-const PhoneModel = forwardRef<Group, PhoneModelProps>(({ children }, ref) => {
+const PhoneModel = forwardRef<Group, PhoneModelProps>(({ floatStrengthRef, children }, ref) => {
   const { scene } = useGLTF(PHONE_MODEL_URL);
   const phoneScene = useMemo(() => createStyledPhoneScene(scene), [scene]);
 
   return (
     <group ref={ref} name="persistent-phone">
-      <primitive
-        object={phoneScene}
-        rotation={PHONE_ASSET_ROTATION}
-        scale={PHONE_ASSET_SCALE}
-      />
-      <Html
-        transform
-        position={PHONE_SCREEN_POSITION}
-        scale={PHONE_SCREEN_SCALE}
-        distanceFactor={1}
-        zIndexRange={[1000, 1000]}
-        style={{ width: `${PHONE_SCREEN_WIDTH}px`, height: `${PHONE_SCREEN_HEIGHT}px` }}
-      >
-        {children}
-      </Html>
+      <PhoneFloat strengthRef={floatStrengthRef}>
+        <primitive
+          object={phoneScene}
+          rotation={PHONE_ASSET_ROTATION}
+          scale={PHONE_ASSET_SCALE}
+        />
+        <Html
+          transform
+          position={PHONE_SCREEN_POSITION}
+          scale={PHONE_SCREEN_SCALE}
+          distanceFactor={1}
+          zIndexRange={[1000, 1000]}
+          style={{ width: `${PHONE_SCREEN_WIDTH}px`, height: `${PHONE_SCREEN_HEIGHT}px` }}
+        >
+          {children}
+        </Html>
+      </PhoneFloat>
     </group>
   );
 });

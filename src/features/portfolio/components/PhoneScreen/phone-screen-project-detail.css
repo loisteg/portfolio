@@ -1,9 +1,13 @@
+/* NOTE: touch-action none on every phone scroller — native touch panning
+   cannot target overflow elements inside the perpetually rewritten 3D
+   transform, so gestures are bridged manually via pointer events
+   (see PhoneScreen.hooks.ts) and the browser must not compete. */
 .phone-project-launcher {
   height: 100%;
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-width: none;
-  touch-action: pan-y;
+  touch-action: none;
   transition: opacity 400ms ease, transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -74,13 +78,16 @@
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-width: none;
-  touch-action: pan-y;
+  touch-action: none;
 }
 
 .phone-project-detail__body::-webkit-scrollbar {
   display: none;
 }
 
+/* NOTE: no scroll-snap here — the wheel bridge and pointer dragging scroll
+   the strip in small increments and mandatory snapping would pull it back to
+   the nearest card, making the strip feel stuck. */
 .phone-project-screens {
   display: flex;
   gap: 8px;
@@ -88,8 +95,13 @@
   overflow-x: auto;
   overscroll-behavior-x: contain;
   scrollbar-width: none;
-  scroll-snap-type: x mandatory;
-  touch-action: pan-x;
+  touch-action: none;
+  cursor: grab;
+  user-select: none;
+}
+
+.phone-project-screens[data-dragging] {
+  cursor: grabbing;
 }
 
 .phone-project-screens::-webkit-scrollbar {
@@ -102,7 +114,6 @@
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.13);
   border-radius: 18px;
-  scroll-snap-align: start;
 }
 
 .phone-project-shot img {

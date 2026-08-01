@@ -63,29 +63,26 @@ export type PortfolioContent = {
   contacts: readonly ContactLink[];
   projects: readonly Project[];
   navigation: readonly NavigationItem[];
-  navigationStatus: string;
   sections: {
     profile: {
       eyebrow: string;
       firstName: string;
       lastName: string;
-      projectsAction: string;
+      aboutAction: string;
     };
     about: { eyebrow: string; heading: string; capabilitiesLabel: string };
-    projects: { eyebrow: string; hint: string };
+    projects: { heading: string };
     contact: {
       eyebrow: string;
       heading: string;
       paragraphs: readonly string[];
-      conversationAction: string;
-      footer: string;
     };
   };
   phone: {
     statusTime: string;
     statusSignal: string;
-    portraitLabel: string;
-    statusBadge: string;
+    portrait: ProjectImage;
+    profileIntro: string;
     metricsEyebrow: string;
     projectsEyebrow: string;
     projectsIntro: string;
@@ -96,9 +93,7 @@ export type PortfolioContent = {
     projectScreensLabel: string;
     appStoreAction: string;
     googlePlayAction: string;
-    contactEyebrow: string;
-    contactHeading: string;
-    contactIntro: string;
+    contactTitle: string;
   };
   accessibility: {
     navigation: string;

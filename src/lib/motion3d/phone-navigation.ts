@@ -17,6 +17,27 @@ export type RevealController = {
 let activeHandler: NavigateHandler | null = null;
 let activeRevealController: RevealController | null = null;
 
+type SectionNavigationListener = (section: SectionKey) => void;
+
+const sectionNavigationListeners = new Set<SectionNavigationListener>();
+
+/* Fired the moment a phone-aware fly-to navigation starts, before the page
+   scroll moves — feature UI (e.g. the expanded project view with its page
+   scroll lock) can reset itself so the flight runs against a normal page. */
+export const registerSectionNavigationListener = (
+  listener: SectionNavigationListener,
+): (() => void) => {
+  sectionNavigationListeners.add(listener);
+
+  return () => {
+    sectionNavigationListeners.delete(listener);
+  };
+};
+
+export const notifySectionNavigation = (section: SectionKey): void => {
+  sectionNavigationListeners.forEach((listener) => listener(section));
+};
+
 export const registerPhoneNavigationHandler = (handler: NavigateHandler): (() => void) => {
   activeHandler = handler;
 

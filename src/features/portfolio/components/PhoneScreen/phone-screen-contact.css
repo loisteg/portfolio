@@ -1,64 +1,14 @@
-.phone-layer-heading--contact {
-  padding: 12px 5px 18px;
-}
-
-.phone-layer-heading--contact strong {
-  max-width: 245px;
-  font-size: 29px;
-}
-
-.phone-contact-intro {
-  margin: 0 5px 22px;
-  color: #92949c;
-  font-size: 10px;
-  line-height: 1.55;
-}
-
-.phone-contact-actions {
+.phone-layer--contact {
   display: grid;
-  gap: 9px;
+  place-items: center;
 }
 
-.phone-contact-actions a {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  min-height: 72px;
-  padding: 13px 15px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.085), rgba(255, 255, 255, 0.026));
-  border: 1px solid rgba(255, 255, 255, 0.13);
-  border-radius: 17px;
-}
-
-.phone-contact-actions span {
-  font-size: 9px;
-  font-weight: 620;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-}
-
-.phone-contact-actions small {
-  grid-row: 2;
-  margin-top: 4px;
-  overflow: hidden;
-  color: #797c85;
-  font-size: 8px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.phone-contact-actions b {
-  grid-row: 1 / 3;
-  grid-column: 2;
-  color: #a8aab1;
-  font-size: 12px;
-  font-weight: 400;
-}
-
-.phone-contact-location {
-  margin: 20px 5px 0;
-  color: #6f727b;
-  font-size: 7px;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
+.phone-contact-title {
+  margin: 0;
+  font-size: 40px;
+  font-weight: 550;
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+  text-align: center;
+  text-wrap: balance;
 }

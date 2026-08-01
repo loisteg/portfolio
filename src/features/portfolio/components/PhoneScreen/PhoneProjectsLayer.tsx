@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { portfolioContent } from '../../content/portfolio.content';
 import type { Project } from '../../portfolio.types';
+import { useCloseDetailOnSectionLeave, usePageScrollLock } from './PhoneProjectsLayer.hooks';
 import type {
   PhoneProjectsLayerProps,
   ProjectDetailProps,
@@ -30,11 +31,12 @@ const ProjectDetail = ({ project, isOpen, backButtonRef, onBack }: ProjectDetail
     <div className="phone-project-detail__body phone-scrollable">
       <div
         className="phone-project-screens phone-scrollable-x"
+        role="group"
         aria-label={portfolioContent.phone.projectScreensLabel}
       >
         {project.screens.map((screen) => (
           <figure key={screen.src} className="phone-project-shot">
-            <img src={screen.src} alt={screen.alt} loading="lazy" />
+            <img src={screen.src} alt={screen.alt} loading="lazy" draggable={false} />
           </figure>
         ))}
       </div>
@@ -83,6 +85,11 @@ const PhoneProjectsLayer = ({ layerRef }: PhoneProjectsLayerProps) => {
   const [isDetailOpen, setIsDetailOpen] = useState(false);
   const backButtonRef = useRef<HTMLButtonElement>(null);
   const lastTriggerRef = useRef<HTMLButtonElement>(null);
+
+  const closeDetail = useCallback(() => setIsDetailOpen(false), []);
+
+  usePageScrollLock(isDetailOpen);
+  useCloseDetailOnSectionLeave(isDetailOpen, closeDetail);
 
   useEffect(() => {
     if (isDetailOpen) {

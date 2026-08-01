@@ -38,10 +38,10 @@ export const portfolioContent = {
       description: 'Improving stability, resolving production issues, and rebuilding legacy foundations.',
     },
   ],
-  location: 'Warsaw, Poland · Open to remote opportunities',
+  location: 'Open to remote opportunities',
   metrics: [
     { value: '4+', label: 'Years building production mobile applications' },
-    { value: '4', label: 'Companies and product environments' },
+    { value: '5', label: 'Companies' },
     { value: '70K+', label: 'Users reached by products I’ve worked on' },
     { value: '99.5%+', label: 'Crash-free sessions' },
   ],
@@ -182,13 +182,12 @@ export const portfolioContent = {
     { label: 'Projects', href: '#projects' },
     { label: 'Contact', href: '#contact' },
   ],
-  navigationStatus: 'Available',
   sections: {
     profile: {
       eyebrow: 'Mobile engineering · React Native',
       firstName: 'Oleksii',
       lastName: 'Khudenko',
-      projectsAction: 'Explore my work',
+      aboutAction: 'A bit about me',
     },
     about: {
       eyebrow: 'About me',
@@ -196,8 +195,7 @@ export const portfolioContent = {
       capabilitiesLabel: 'Core capabilities',
     },
     projects: {
-      eyebrow: 'Selected work',
-      hint: 'Products shaped by complex requirements, real users, and production responsibility.',
+      heading: 'Projects',
     },
     contact: {
       eyebrow: 'Contact',
@@ -206,15 +204,17 @@ export const portfolioContent = {
         'Have a mobile product to scale, an architecture to improve, or a development team to grow? Let’s talk.',
         'I’m open to Mobile Team Lead and senior-level React Native opportunities, as well as collaborations on ambitious mobile products.',
       ],
-      conversationAction: 'Start a conversation',
-      footer: 'Built with React, Three.js and a focus on the details.',
     },
   },
   phone: {
     statusTime: '9:41',
     statusSignal: '● ●',
-    portraitLabel: 'Portrait placeholder with the initials OK',
-    statusBadge: 'Open to opportunities',
+    portrait: {
+      src: '/profile/portrait.jpg',
+      alt: 'Portrait of Oleksii Khudenko',
+    },
+    profileIntro:
+      'I love building products that users genuinely enjoy — it pushes me to make them better, more stable, and more pleasant to use. I never stop learning: perfection is impossible to reach, but chasing it is always worth it.',
     metricsEyebrow: 'Experience at a glance',
     projectsEyebrow: 'Selected work',
     projectsIntro: 'Products shaped by complex requirements, real users, and production responsibility.',
@@ -225,9 +225,7 @@ export const portfolioContent = {
     projectScreensLabel: 'Project screens',
     appStoreAction: 'View on the App Store',
     googlePlayAction: 'Get it on Google Play',
-    contactEyebrow: 'Start a conversation',
-    contactHeading: 'Let’s build something people can rely on.',
-    contactIntro: 'Have a mobile product to scale, an architecture to improve, or a development team to grow? Let’s talk.',
+    contactTitle: 'Contact me!',
   },
   accessibility: {
     navigation: 'Primary navigation',

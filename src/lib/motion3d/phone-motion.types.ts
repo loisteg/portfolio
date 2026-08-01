@@ -39,8 +39,19 @@ export type PhoneExperienceProps = {
   children: ReactNode;
 };
 
+/* Mutable per-frame multiplier (0..1) for the weightless float. GSAP tweens
+   `current` while the render loop reads it, so no React re-renders occur. */
+export type FloatStrengthRef = { current: number };
+
+export type PhoneFloatProps = {
+  strengthRef: FloatStrengthRef;
+  children: ReactNode;
+};
+
 export type PhoneMotionControllerProps = Omit<PhoneExperienceProps, 'children'> & {
   phoneRef: RefObject<Group | null>;
+  shellRef: ElementRef<HTMLDivElement>;
+  floatStrengthRef: FloatStrengthRef;
 };
 
 export type MotionTarget = {
@@ -49,8 +60,6 @@ export type MotionTarget = {
   z: number;
   scale: number;
 };
-
-export type MotionRotation = readonly [number, number, number];
 
 export type MotionSetup = {
   isMobile: boolean;

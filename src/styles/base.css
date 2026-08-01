@@ -11,7 +11,7 @@
   --line: rgba(255, 255, 255, 0.16);
   --text: #f5f5f7;
   --muted: #9a9aa2;
-  --nav-height: 64px;
+  --nav-height: 46px;
 
   /* Rasterization factor for the DOM projected onto the 3D phone screen.
      Keep in sync with PHONE_SCREEN_RESOLUTION in src/lib/motion3d/PhoneModel.constants.ts. */
@@ -25,6 +25,11 @@
 html {
   scroll-behavior: smooth;
   scroll-snap-type: y mandatory;
+
+  /* Classic (non-overlay) scrollbars must not change the viewport width when
+     the page-scroll lock toggles overflow — that reflow would resize the
+     canvas and visibly disturb the phone. */
+  scrollbar-gutter: stable;
   background: var(--background);
 }
 

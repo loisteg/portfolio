@@ -23,6 +23,12 @@
   user-select: text;
 }
 
+/* While a drag-scroll gesture is active, stray text selection would fight
+   the pan. */
+.phone-screen-frame[data-dragging] {
+  user-select: none;
+}
+
 .phone-screen-frame::after {
   position: absolute;
   z-index: 40;
@@ -85,62 +91,19 @@
 
 .profile-portrait {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  height: 270px;
-  padding: 25px;
+  height: 300px;
   overflow: hidden;
-  background:
-    linear-gradient(150deg, rgba(255, 255, 255, 0.12), transparent 55%),
-    #1b1c20;
+  background: #1b1c20;
   border: 1px solid rgba(255, 255, 255, 0.13);
   border-radius: 26px;
 }
 
-.profile-portrait__orb {
-  position: absolute;
-  top: 30px;
-  right: 14px;
-  width: 155px;
-  height: 155px;
-  background: radial-gradient(circle at 35% 30%, #777d88, #2b2f37 50%, #111216 72%);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 50%;
-  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.55);
-}
-
-.profile-portrait strong {
-  position: relative;
-  font-size: 62px;
-  font-weight: 550;
-  line-height: 0.9;
-  letter-spacing: -0.08em;
-}
-
-.profile-portrait__badge {
-  position: absolute;
-  top: 24px;
-  left: 24px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 7px 10px;
-  background: rgba(183, 216, 180, 0.12);
-  border: 1px solid rgba(183, 216, 180, 0.3);
-  border-radius: 99px;
-  color: #cfe7cc;
-  font-size: 8px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.profile-portrait__badge i {
-  width: 5px;
-  height: 5px;
-  background: #b7d8b4;
-  border-radius: 50%;
-  box-shadow: 0 0 10px rgba(183, 216, 180, 0.8);
+.profile-portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 22%;
 }
 
 .phone-profile-heading {
@@ -174,32 +137,9 @@
   text-transform: uppercase;
 }
 
-.phone-contact-list {
-  display: grid;
-  gap: 7px;
-}
-
-.phone-contact-row {
-  display: grid;
-  grid-template-columns: 28px 1fr auto;
-  align-items: center;
-  min-height: 48px;
-  padding: 0 14px;
-  background: rgba(255, 255, 255, 0.048);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 15px;
-}
-
-.phone-contact-row span,
-.phone-contact-row b {
-  color: #8e9097;
-  font-size: 9px;
-  font-weight: 500;
-}
-
-.phone-contact-row p {
-  margin: 0;
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+.phone-profile-intro {
+  margin: 6px 5px 0;
+  color: #a2a4ac;
+  font-size: 11px;
+  line-height: 1.65;
 }

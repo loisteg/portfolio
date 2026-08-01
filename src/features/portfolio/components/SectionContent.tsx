@@ -1,4 +1,4 @@
-import { portfolioContent, primaryContact } from '../content/portfolio.content';
+import { portfolioContent } from '../content/portfolio.content';
 import { handleSectionAnchorClick } from '../../../lib/motion3d/phone-navigation';
 import type { SectionContentProps } from './SectionContent.types';
 
@@ -20,11 +20,8 @@ export const ProfileContent = ({ profileRef }: Pick<SectionContentProps, 'profil
       ))}
     </ul>
     <div className="profile-actions" data-reveal="item">
-      <a className="button button--primary" href="#projects" onClick={handleSectionAnchorClick}>
-        {portfolioContent.sections.profile.projectsAction} <span aria-hidden="true">↘</span>
-      </a>
-      <a className="button button--ghost" href="#contact" onClick={handleSectionAnchorClick}>
-        {portfolioContent.sections.contact.conversationAction} <span aria-hidden="true">↗</span>
+      <a className="button button--primary" href="#about" onClick={handleSectionAnchorClick}>
+        {portfolioContent.sections.profile.aboutAction} <span aria-hidden="true">↘</span>
       </a>
     </div>
   </div>
@@ -50,8 +47,7 @@ export const AboutContent = ({ aboutRef }: Pick<SectionContentProps, 'aboutRef'>
 
 export const ProjectsContent = ({ projectsRef }: Pick<SectionContentProps, 'projectsRef'>) => (
   <div className="projects-copy section-copy" ref={projectsRef}>
-    <p className="eyebrow" data-reveal="item">{portfolioContent.sections.projects.eyebrow}</p>
-    <p className="projects-copy__hint" data-reveal="item">{portfolioContent.sections.projects.hint}</p>
+    <h2 data-reveal="heading">{portfolioContent.sections.projects.heading}</h2>
     <span className="projects-copy__line" aria-hidden="true" data-reveal="item" />
   </div>
 );
@@ -81,13 +77,5 @@ export const ContactContent = ({ contactRef }: Pick<SectionContentProps, 'contac
         </a>
       ))}
     </div>
-    <a
-      className="button button--primary contact-card__action"
-      href={primaryContact.href}
-      data-reveal="item"
-    >
-      {portfolioContent.sections.contact.conversationAction} <span aria-hidden="true">↗</span>
-    </a>
-    <p className="contact-card__footer" data-reveal="item">{portfolioContent.sections.contact.footer}</p>
   </div>
 );

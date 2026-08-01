@@ -83,28 +83,18 @@
    `.section-copy { position: relative }` rule in the cascade. */
 .story-section--projects .projects-copy {
   position: absolute;
-  top: 40%;
+  top: max(96px, calc(var(--nav-height) + 48px));
   left: clamp(28px, 7vw, 120px);
-  width: 250px;
   margin: 0;
   text-align: left;
 }
 
-.projects-copy__hint {
+.projects-copy h2 {
   margin: 0;
-  color: #8d8e95;
-  font-size: 12px;
-  line-height: 1.6;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.projects-copy__line {
-  display: block;
-  width: 1px;
-  height: 44px;
-  margin: 18px 0 0;
-  background: linear-gradient(#777980, transparent);
+  font-size: clamp(32px, 3.4vw, 54px);
+  font-weight: 520;
+  line-height: 0.98;
+  letter-spacing: -0.06em;
 }
 
 .contact-card {

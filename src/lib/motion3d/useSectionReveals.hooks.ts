@@ -8,10 +8,17 @@ import type { ContentRefs, SectionKey } from './phone-motion.types';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
+type EntranceParts = {
+  heading: HTMLElement | null;
+  items: HTMLElement[];
+};
+
 /* Apple-style entrance for section copy: the heading rises word-by-word out
    of masked lines, then the remaining elements stagger in. Runs on its own
    ScrollTriggers, fully independent of the WebGL phone — if this never
-   initializes, the content simply stays visible (see portfolio-content.css). */
+   initializes, the content simply stays visible (see portfolio-content.css).
+   Scroll-driven entrances fire once per page load; direct nav-bar navigation
+   rebuilds and replays the destination's entrance. */
 export const useSectionReveals = (contentRefs: ContentRefs): void => {
   useEffect(() => {
     const roots = (Object.entries(contentRefs) as [SectionKey, ContentRefs[SectionKey]][])
@@ -26,24 +33,34 @@ export const useSectionReveals = (contentRefs: ContentRefs): void => {
     const media = gsap.matchMedia();
 
     media.add('(prefers-reduced-motion: no-preference)', () => {
-      const splits: SplitText[] = [];
-      const timelines = new Map<SectionKey, gsap.core.Timeline>();
+      const parts = new Map<SectionKey, EntranceParts>();
+      const entrances = new Map<SectionKey, gsap.core.Timeline>();
+      const activeSplits = new Map<SectionKey, SplitText>();
       const rootElements = roots.map((entry) => entry.root);
 
-      roots.forEach(({ section, root }) => {
-        const heading = root.querySelector<HTMLElement>('[data-reveal="heading"]');
-        const items = Array.from(root.querySelectorAll<HTMLElement>('[data-reveal="item"]'));
+      const releaseSplit = (section: SectionKey) => {
+        activeSplits.get(section)?.revert();
+        activeSplits.delete(section);
+      };
+
+      /* (Re)builds a section's entrance from the current layout. The split
+         only lives while the entrance plays: its line masks freeze the text
+         wrapping measured at split time, and keeping them around would leave
+         stale line breaks after any later layout change. */
+      const buildEntrance = (section: SectionKey): gsap.core.Timeline => {
+        releaseSplit(section);
+        entrances.get(section)?.kill();
+
+        const { heading, items } = parts.get(section) ?? { heading: null, items: [] };
         const timeline = gsap.timeline({
-          scrollTrigger: {
-            trigger: root,
-            start: 'top 75%',
-            toggleActions: 'play none none reverse',
-          },
+          paused: true,
+          onComplete: () => releaseSplit(section),
         });
 
         if (heading) {
           const split = new SplitText(heading, { type: 'lines,words', mask: 'lines' });
-          splits.push(split);
+
+          activeSplits.set(section, split);
           timeline.from(split.words, {
             yPercent: 115,
             duration: 0.85,
@@ -62,7 +79,25 @@ export const useSectionReveals = (contentRefs: ContentRefs): void => {
           }, heading ? '-=0.45' : 0);
         }
 
-        timelines.set(section, timeline);
+        entrances.set(section, timeline);
+
+        return timeline;
+      };
+
+      roots.forEach(({ section, root }) => {
+        parts.set(section, {
+          heading: root.querySelector<HTMLElement>('[data-reveal="heading"]'),
+          items: Array.from(root.querySelectorAll<HTMLElement>('[data-reveal="item"]')),
+        });
+        buildEntrance(section);
+
+        /* Scrolling back and forth never replays an entrance. */
+        ScrollTrigger.create({
+          trigger: root,
+          start: 'top 75%',
+          once: true,
+          onEnter: () => entrances.get(section)?.play(),
+        });
       });
 
       /* During a direct fly-to navigation the page scrolls through
@@ -86,7 +121,7 @@ export const useSectionReveals = (contentRefs: ContentRefs): void => {
               gsap.set(root, { autoAlpha: 1 });
             }
           });
-          timelines.get(section)?.play(0);
+          buildEntrance(section).play(0);
         },
         restore: () => {
           gsap.to(rootElements, { autoAlpha: 1, duration: 0.25, ease: 'power1.out', overwrite: 'auto' });
@@ -95,7 +130,8 @@ export const useSectionReveals = (contentRefs: ContentRefs): void => {
 
       return () => {
         unregister();
-        splits.forEach((split) => split.revert());
+        entrances.forEach((timeline) => timeline.kill());
+        roots.forEach(({ section }) => releaseSplit(section));
       };
     });
 

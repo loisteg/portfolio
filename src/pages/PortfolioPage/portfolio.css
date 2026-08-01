@@ -65,14 +65,15 @@
 .site-nav {
   position: fixed;
   z-index: 50;
-  top: max(22px, env(safe-area-inset-top));
+  top: max(18px, env(safe-area-inset-top));
   left: 50%;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  width: min(760px, calc(100vw - 40px));
+  width: fit-content;
+  max-width: calc(100vw - 32px);
   min-height: var(--nav-height);
-  padding: 8px 11px;
+  padding: 3px clamp(14px, 2vw, 22px);
   transform: translateX(-50%);
   background: rgba(14, 14, 16, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -81,29 +82,18 @@
   backdrop-filter: blur(22px) saturate(125%);
 }
 
-.site-nav__mark {
-  display: grid;
-  width: 45px;
-  height: 45px;
-  place-items: center;
-  background: #ededf0;
-  color: #0b0b0d;
-  border-radius: 50%;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: -0.04em;
-}
-
 .site-nav__links {
   display: flex;
   justify-content: center;
-  gap: clamp(22px, 4vw, 48px);
+  gap: clamp(18px, 3.4vw, 38px);
 }
 
-.site-nav__links a,
-.site-nav__status {
+/* Vertical padding keeps each link a comfortable pointer/touch target while
+   the pill itself stays visually slim. */
+.site-nav__links a {
+  padding: 13px 2px;
   color: rgba(245, 245, 247, 0.72);
-  font-size: 10px;
+  font-size: clamp(9px, 0.6vw + 5px, 10px);
   font-weight: 550;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -112,23 +102,6 @@
 
 .site-nav__links a:hover {
   color: #fff;
-}
-
-.site-nav__status {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  padding-right: 10px;
-  color: #c6c7cc;
-  font-size: 8px;
-}
-
-.site-nav__status span {
-  width: 6px;
-  height: 6px;
-  background: #b7d8b4;
-  border-radius: 50%;
-  box-shadow: 0 0 14px rgba(183, 216, 180, 0.65);
 }
 
 .canvas-shell {
@@ -275,10 +248,10 @@
 }
 
 .phone-anchor--about {
-  top: 15%;
-  left: 5%;
-  width: min(34vw, 490px);
-  height: 74%;
+  top: 11%;
+  left: 4%;
+  width: min(38vw, 560px);
+  height: 80%;
 }
 
 .phone-anchor--projects {
