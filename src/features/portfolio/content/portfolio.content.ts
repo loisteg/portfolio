@@ -133,8 +133,8 @@ export const portfolioContent = {
       contribution: [
         'Production React Native feature development',
         'Complex REST API integrations',
-        'Transactional and role-based workflows',
-        'Reliable client-server synchronization',
+        'Complete application redesign',
+        'Migration from legacy code to modern standards',
         'Error handling and state management',
         'Performance and stability improvements',
       ],
@@ -212,6 +212,12 @@ export const portfolioContent = {
     portrait: {
       src: '/profile/portrait.jpg',
       alt: 'Portrait of Oleksii Khudenko',
+    },
+    /* Title renders with a forced line break (pre-line) and uppercase via CSS. */
+    profileHeading: {
+      title: 'Building teams\nthat ship.',
+      subtitle: 'Engineering standards, mentoring, and predictable delivery.',
+      tagline: 'Leadership · Process · Quality',
     },
     profileIntro:
       'I love building products that users genuinely enjoy — it pushes me to make them better, more stable, and more pleasant to use. I never stop learning: perfection is impossible to reach, but chasing it is always worth it.',

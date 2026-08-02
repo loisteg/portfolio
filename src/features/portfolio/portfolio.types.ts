@@ -82,6 +82,11 @@ export type PortfolioContent = {
     statusTime: string;
     statusSignal: string;
     portrait: ProjectImage;
+    profileHeading: {
+      title: string;
+      subtitle: string;
+      tagline: string;
+    };
     profileIntro: string;
     metricsEyebrow: string;
     projectsEyebrow: string;

@@ -18,9 +18,9 @@ const ProfileLayer = ({ layerRef }: PhoneLayerProps) => (
       <img src={portfolioContent.phone.portrait.src} alt={portfolioContent.phone.portrait.alt} />
     </div>
     <div className="phone-profile-heading">
-      <p>{portfolioContent.name}</p>
-      <span>{portfolioContent.primaryRole} · {portfolioContent.secondaryRole}</span>
-      <small>{portfolioContent.location}</small>
+      <p>{portfolioContent.phone.profileHeading.title}</p>
+      <span>{portfolioContent.phone.profileHeading.subtitle}</span>
+      <small>{portfolioContent.phone.profileHeading.tagline}</small>
     </div>
     <p className="phone-profile-intro">{portfolioContent.phone.profileIntro}</p>
   </div>
