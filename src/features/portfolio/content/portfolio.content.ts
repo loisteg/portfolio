@@ -235,6 +235,7 @@ export const portfolioContent = {
     navigation: 'Primary navigation',
     home: 'Oleksii Khudenko, back to profile',
     fallback: 'Profile card for Oleksii Khudenko',
+    loading: 'Loading portfolio',
   },
 } satisfies PortfolioContent;
 

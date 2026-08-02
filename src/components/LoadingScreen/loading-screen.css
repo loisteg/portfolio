@@ -1,0 +1,67 @@
+.loading-screen {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--background);
+  opacity: 1;
+  transition: opacity 600ms ease;
+}
+
+.loading-screen--hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading-screen__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.loading-screen__mark {
+  color: var(--text);
+  font-size: clamp(30px, 6vw, 42px);
+  font-weight: 600;
+  /* Trailing letter-spacing is balanced by an equal indent so the monogram
+     stays optically centred over the spinner. */
+  letter-spacing: 0.34em;
+  text-indent: 0.34em;
+}
+
+.loading-screen__spinner {
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--line);
+  border-top-color: var(--text);
+  border-radius: 50%;
+  animation: loading-screen-spin 0.8s linear infinite;
+}
+
+.loading-screen__status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@keyframes loading-screen-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading-screen__spinner {
+    animation: none;
+    border-top-color: var(--line);
+  }
+}

@@ -37,6 +37,11 @@ export const useSectionReveals = (contentRefs: ContentRefs): void => {
       const entrances = new Map<SectionKey, gsap.core.Timeline>();
       const activeSplits = new Map<SectionKey, SplitText>();
       const rootElements = roots.map((entry) => entry.root);
+      const safetyCalls: gsap.core.Tween[] = [];
+
+      /* Delay long enough that any healthy entrance has finished, so the net
+         only heals a stuck reveal and never cuts a running one short. */
+      const REVEAL_SAFETY_DELAY = 2.4;
 
       const releaseSplit = (section: SectionKey) => {
         activeSplits.get(section)?.revert();
@@ -96,7 +101,32 @@ export const useSectionReveals = (contentRefs: ContentRefs): void => {
           trigger: root,
           start: 'top 75%',
           once: true,
-          onEnter: () => entrances.get(section)?.play(),
+          onEnter: () => {
+            entrances.get(section)?.play();
+
+            /* Safety net: on some sections (contact on mobile) the entrance can
+               leave the body copy stuck hidden while only the heading reveals.
+               After the entrance would have finished, fade in whatever is still
+               hidden — a no-op when the reveal already succeeded. */
+            safetyCalls.push(
+              gsap.delayedCall(REVEAL_SAFETY_DELAY, () => {
+                const revealItems = parts.get(section)?.items ?? [];
+                const stuck = revealItems.filter(
+                  (element) => Number(gsap.getProperty(element, 'opacity')) < 1,
+                );
+
+                if (stuck.length > 0) {
+                  gsap.to(stuck, {
+                    autoAlpha: 1,
+                    y: 0,
+                    duration: 0.4,
+                    stagger: 0.05,
+                    ease: 'power2.out',
+                  });
+                }
+              }),
+            );
+          },
         });
       });
 
@@ -130,6 +160,7 @@ export const useSectionReveals = (contentRefs: ContentRefs): void => {
 
       return () => {
         unregister();
+        safetyCalls.forEach((call) => call.kill());
         entrances.forEach((timeline) => timeline.kill());
         roots.forEach(({ section }) => releaseSplit(section));
       };

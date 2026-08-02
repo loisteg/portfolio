@@ -103,5 +103,6 @@ export type PortfolioContent = {
     navigation: string;
     home: string;
     fallback: string;
+    loading: string;
   };
 };

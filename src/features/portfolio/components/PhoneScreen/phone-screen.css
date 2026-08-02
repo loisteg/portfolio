@@ -93,7 +93,7 @@
 
 .profile-portrait {
   position: relative;
-  height: 300px;
+  height: 286px;
   overflow: hidden;
   background: #e0ddc8;
   border: 1px solid rgba(28, 28, 14, 0.14);
@@ -146,10 +146,10 @@
 }
 
 .phone-profile-intro {
-  margin: 8px 5px 0;
-  padding-top: 12px;
+  margin: 6px 5px 0;
+  padding-top: 10px;
   border-top: 1px solid rgba(28, 28, 14, 0.18);
   color: #3f4034;
   font-size: 11px;
-  line-height: 1.65;
+  line-height: 1.5;
 }

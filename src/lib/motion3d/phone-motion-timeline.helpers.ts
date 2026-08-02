@@ -103,7 +103,7 @@ export const buildSectionTimeline = ({
       ease,
     }, time);
     timeline.to(floatStrengthRef, {
-      current: resolveFloatStrength(section, isReducedMotion),
+      current: resolveFloatStrength(section, isReducedMotion, isMobile),
       duration: 1,
       ease,
     }, time);
@@ -118,7 +118,7 @@ export const buildSectionTimeline = ({
     z: 0,
   });
   gsap.set(floatStrengthRef, {
-    current: resolveFloatStrength('profile', isReducedMotion),
+    current: resolveFloatStrength('profile', isReducedMotion, isMobile),
   });
 
   SECTION_ORDER.forEach((section, index) => {

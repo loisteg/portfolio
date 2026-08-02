@@ -1,3 +1,4 @@
+import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
 import Navigation from '../../components/Navigation/Navigation';
 import PhoneScreen from '../../features/portfolio/components/PhoneScreen/PhoneScreen';
 import {
@@ -10,12 +11,14 @@ import WebGLFallback from '../../features/portfolio/components/WebGLFallback';
 import { usePortfolioMotionRefs } from '../../features/portfolio/hooks/usePortfolioMotionRefs.hooks';
 import useWebGLSupport from '../../hooks/useWebGLSupport';
 import PhoneExperience from '../../lib/motion3d/PhoneExperience';
+import { useAppReady } from '../../lib/motion3d/useAppReady.hooks';
 import { useSectionReveals } from '../../lib/motion3d/useSectionReveals.hooks';
 import './portfolio.css';
 import './portfolio-responsive.css';
 
 const PortfolioPage = () => {
   const isWebGLSupported = useWebGLSupport();
+  const isAppReady = useAppReady(isWebGLSupported);
   const {
     mainRef,
     profileSectionRef,
@@ -35,6 +38,7 @@ const PortfolioPage = () => {
 
   return (
     <div className="portfolio-shell">
+      <LoadingScreen isReady={isAppReady} />
       <Navigation />
       <div className="ambient-light ambient-light--one" aria-hidden="true" />
       <div className="ambient-light ambient-light--two" aria-hidden="true" />

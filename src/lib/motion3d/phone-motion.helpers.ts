@@ -43,9 +43,15 @@ export const createTargetResolver = (
   };
 };
 
-/* Reduced motion keeps the phone perfectly still on every section. */
-export const resolveFloatStrength = (section: SectionKey, isReducedMotion: boolean): number =>
-  isReducedMotion ? 0 : SECTION_FLOAT_STRENGTH[section];
+/* Reduced motion keeps the phone perfectly still on every section. Mobile does
+   too: the projected DOM screen re-composites every frame the phone moves, so a
+   constant idle drift is the dominant cost on touch devices — freezing it there
+   lets the screen render only while scrolling. */
+export const resolveFloatStrength = (
+  section: SectionKey,
+  isReducedMotion: boolean,
+  isMobile: boolean,
+): number => (isReducedMotion || isMobile ? 0 : SECTION_FLOAT_STRENGTH[section]);
 
 /* Crossfades the outgoing phone-screen layer into the incoming one around a
    timeline label. Blur always settles back to 0 so layers never rest soft. */

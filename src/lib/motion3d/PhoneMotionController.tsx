@@ -33,8 +33,12 @@ import type {
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 /* Wheel input is hijacked into fly-to navigation below, so only touch
-   gestures can interrupt a flight and hand control back to native scroll. */
-const INTERRUPT_EVENTS = ['touchstart'] as const;
+   gestures can interrupt a flight and hand control back to native scroll.
+   Must be touchmove, not touchstart: a nav-bar tap (or any incidental finger
+   contact during the ~1.15s flight) fires touchstart and would abort the
+   navigation, which is why nav worked with a mouse but not on a real phone.
+   Only an actual scroll gesture (touchmove) should hand control back. */
+const INTERRUPT_EVENTS = ['touchmove'] as const;
 
 /* Wheel events closer together than this belong to the same physical gesture
    (trackpad momentum tail); only a fresh gesture starts a new flight. */
@@ -190,7 +194,7 @@ const PhoneMotionController = ({
         z: () => target().scale,
       }, 0);
       navTween.to(floatStrengthRef, {
-        current: resolveFloatStrength(section, isReducedMotion),
+        current: resolveFloatStrength(section, isReducedMotion, isMobile),
       }, 0);
 
       if (isReducedMotion) {
