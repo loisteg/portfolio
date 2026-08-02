@@ -1,7 +1,11 @@
 import { Material, Mesh, MeshStandardMaterial, type Object3D } from 'three';
 
-import { FRONT_SCREEN_MESH_NAME, PHONE_MATERIALS } from './PhoneModel.constants';
+import { PHONE_DISPLAY_MATERIAL } from './PhoneModel.constants';
 
+/* The GLB ships with a lit wallpaper on the display panel; the portfolio
+   projects its own DOM screen on top, so the panel is switched off and reads
+   as the black bezel around the projected content. Every other material keeps
+   its authored look — the silver body relies on the studio environment. */
 const stylePhoneMaterial = (sourceMaterial: Material): Material => {
   const material = sourceMaterial.clone();
 
@@ -9,28 +13,16 @@ const stylePhoneMaterial = (sourceMaterial: Material): Material => {
     return material;
   }
 
-  if (material.name === PHONE_MATERIALS.body) {
-    material.color.set('#08090b');
-    material.metalness = 0.42;
-    material.roughness = 0.24;
-  }
+  if (material.name === PHONE_DISPLAY_MATERIAL) {
+    material.map = null;
+    material.emissiveMap = null;
+    material.emissive.set('#000000');
+    material.color.set('#050507');
+    material.metalness = 0.1;
+    material.roughness = 0.4;
 
-  if (material.name === PHONE_MATERIALS.frame) {
-    material.color.set('#24272c');
-    material.metalness = 0.92;
-    material.roughness = 0.16;
-  }
-
-  if (material.name === PHONE_MATERIALS.border) {
-    material.color.set('#050608');
-    material.metalness = 0.28;
-    material.roughness = 0.14;
-  }
-
-  if (material.name === PHONE_MATERIALS.button) {
-    material.color.set('#17191d');
-    material.metalness = 0.84;
-    material.roughness = 0.2;
+    /* Kept dim so the black panel does not mirror the bright environment. */
+    material.envMapIntensity = 0.12;
   }
 
   return material;
@@ -46,7 +38,6 @@ export const createStyledPhoneScene = (sourceScene: Object3D): Object3D => {
 
     object.castShadow = false;
     object.receiveShadow = false;
-    object.visible = object.name !== FRONT_SCREEN_MESH_NAME;
     object.material = Array.isArray(object.material)
       ? object.material.map(stylePhoneMaterial)
       : stylePhoneMaterial(object.material);

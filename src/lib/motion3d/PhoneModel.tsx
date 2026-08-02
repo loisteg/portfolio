@@ -3,6 +3,7 @@ import { forwardRef, useMemo } from 'react';
 import type { Group } from 'three';
 
 import {
+  PHONE_ASSET_POSITION,
   PHONE_ASSET_ROTATION,
   PHONE_ASSET_SCALE,
   PHONE_MODEL_URL,
@@ -24,6 +25,7 @@ const PhoneModel = forwardRef<Group, PhoneModelProps>(({ floatStrengthRef, child
       <PhoneFloat strengthRef={floatStrengthRef}>
         <primitive
           object={phoneScene}
+          position={PHONE_ASSET_POSITION}
           rotation={PHONE_ASSET_ROTATION}
           scale={PHONE_ASSET_SCALE}
         />

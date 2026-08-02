@@ -1,9 +1,15 @@
+import { Environment } from '@react-three/drei';
+
+/* A real studio HDRI (bundled locally, CC0 — see public/env/ATTRIBUTION.md)
+   gives the metallic body the same smooth, rich reflections as Sketchfab's
+   viewer; flat rectangular lightformers band visibly on large glossy
+   surfaces. Analytic lights only add key/fill accents on dielectric parts. */
 const StudioLights = () => (
   <>
-    <ambientLight intensity={0.38} />
-    <directionalLight position={[-5, 7, 8]} intensity={3.1} color="#e9eefc" />
-    <directionalLight position={[6, 1, 4]} intensity={2.2} color="#8da6da" />
-    <pointLight position={[-5, -4, 3]} intensity={24} distance={12} color="#8998bc" />
+    <ambientLight intensity={0.2} />
+    <directionalLight position={[-5, 7, 8]} intensity={1.4} color="#fff4e4" />
+    <directionalLight position={[6, 1, 4]} intensity={0.8} color="#dfe6f2" />
+    <Environment files="/env/studio_small_08_1k.hdr" />
   </>
 );
 

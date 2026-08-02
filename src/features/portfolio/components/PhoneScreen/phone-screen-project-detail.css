@@ -31,8 +31,8 @@
   overflow: hidden;
   transform: translateX(24%);
   opacity: 0;
-  background: linear-gradient(160deg, rgba(24, 26, 31, 0.99), rgba(8, 9, 12, 0.99));
-  border: 1px solid rgba(255, 255, 255, 0.13);
+  background: linear-gradient(160deg, rgba(250, 248, 238, 0.99), rgba(233, 230, 210, 0.99));
+  border: 1px solid rgba(28, 28, 14, 0.14);
   border-radius: 24px;
   pointer-events: none;
   transition: opacity 400ms ease, transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -57,16 +57,16 @@
   justify-self: start;
   min-height: 30px;
   padding: 0 9px;
-  color: #d8d9dd;
-  background: rgba(255, 255, 255, 0.055);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #2e2f23;
+  background: rgba(28, 28, 14, 0.05);
+  border: 1px solid rgba(28, 28, 14, 0.16);
   border-radius: 99px;
   font-size: 8px;
   cursor: pointer;
 }
 
 .phone-project-detail__topbar > span {
-  color: #8e9199;
+  color: #6b6c58;
   font-size: 8px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -112,7 +112,7 @@
   flex: 0 0 118px;
   margin: 0;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.13);
+  border: 1px solid rgba(28, 28, 14, 0.14);
   border-radius: 18px;
 }
 
@@ -125,8 +125,8 @@
 .phone-project-about {
   margin-top: 10px;
   padding: 12px;
-  background: rgba(255, 255, 255, 0.035);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(28, 28, 14, 0.12);
   border-radius: 16px;
 }
 
@@ -140,7 +140,7 @@
 
 .phone-project-about p {
   margin: 0 0 6px;
-  color: #92949c;
+  color: #45463a;
   font-size: 8px;
   line-height: 1.45;
 }
@@ -160,9 +160,9 @@
 
 .phone-project-about li {
   padding: 5px 7px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(28, 28, 14, 0.16);
   border-radius: 99px;
-  color: #b8bac0;
+  color: #3a3b2f;
   font-size: 6px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -172,8 +172,8 @@
 .phone-project-outcomes {
   margin-top: 9px;
   padding: 12px;
-  background: rgba(255, 255, 255, 0.035);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(28, 28, 14, 0.12);
   border-radius: 16px;
 }
 
@@ -181,7 +181,7 @@
 .phone-project-outcomes > span {
   display: block;
   margin-bottom: 8px;
-  color: #8b8e97;
+  color: #6b6c58;
   font-size: 7px;
   letter-spacing: 0.13em;
   text-transform: uppercase;
@@ -198,7 +198,7 @@
 .phone-project-contribution li {
   position: relative;
   padding-left: 12px;
-  color: #a6a8b0;
+  color: #45463a;
   font-size: 8px;
   line-height: 1.4;
 }
@@ -209,14 +209,14 @@
   left: 0;
   width: 4px;
   height: 4px;
-  background: #9aa3b5;
+  background: #8a8c60;
   border-radius: 50%;
   content: "";
 }
 
 .phone-project-outcomes p {
   margin: 0 0 8px;
-  color: #92949c;
+  color: #45463a;
   font-size: 8px;
   line-height: 1.45;
 }
@@ -228,7 +228,7 @@
 .phone-project-outcomes strong {
   display: block;
   margin-bottom: 2px;
-  color: #e4e5e9;
+  color: #1f2016;
   font-size: 9px;
   font-weight: 570;
   letter-spacing: -0.01em;
@@ -246,10 +246,10 @@
   min-height: 38px;
   padding: 0 6px;
   place-items: center;
-  color: #d7d8dc;
+  color: #2e2f23;
   text-align: center;
-  background: rgba(255, 255, 255, 0.055);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(28, 28, 14, 0.16);
   border-radius: 12px;
   font-size: 7px;
   letter-spacing: 0.08em;

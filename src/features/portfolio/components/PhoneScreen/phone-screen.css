@@ -4,10 +4,14 @@
 
 .phone-screen-frame {
   position: relative;
-  width: 286px;
+
+  /* 303x660 matches the lit display proportions of the iPhone 14 Pro Max
+     model. Keep in sync with PHONE_SCREEN_WIDTH/HEIGHT in
+     PhoneModel.constants.ts. */
+  width: 303px;
   height: 660px;
 
-  /* Renders the 286x660 design at a higher pixel density inside the 3D
+  /* Renders the 303x660 design at a higher pixel density inside the 3D
      projection; the world-space scale is divided by the same factor. */
   zoom: var(--phone-screen-resolution);
   padding: 6px;
@@ -35,7 +39,7 @@
   inset: 5px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 38px;
-  box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.72);
+  box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.22);
   pointer-events: none;
   content: "";
 }
@@ -45,10 +49,8 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  color: #f7f7f9;
-  background:
-    radial-gradient(circle at 76% 12%, rgba(115, 126, 158, 0.2), transparent 27%),
-    linear-gradient(160deg, #151619 0%, #090a0c 52%, #111215 100%);
+  color: #23231a;
+  background: #ece9d6 url("/background/phone-waves.jpg") center / cover no-repeat;
   border-radius: 38px;
 }
 
@@ -71,7 +73,7 @@
   height: 22px;
   margin-left: 8px;
   background: #020203;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(28, 28, 14, 0.2);
   border-radius: 99px;
 }
 
@@ -93,8 +95,8 @@
   position: relative;
   height: 300px;
   overflow: hidden;
-  background: #1b1c20;
-  border: 1px solid rgba(255, 255, 255, 0.13);
+  background: #e0ddc8;
+  border: 1px solid rgba(28, 28, 14, 0.14);
   border-radius: 26px;
 }
 
@@ -128,7 +130,7 @@
 .phone-profile-heading span {
   display: block;
   margin-top: 8px;
-  color: #94969e;
+  color: #45463a;
   font-size: 10px;
   letter-spacing: 0.02em;
   line-height: 1.5;
@@ -137,15 +139,17 @@
 .phone-profile-heading small {
   display: block;
   margin-top: 8px;
-  color: #74767f;
+  color: #6b6c58;
   font-size: 8px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .phone-profile-intro {
-  margin: 6px 5px 0;
-  color: #a2a4ac;
+  margin: 8px 5px 0;
+  padding-top: 12px;
+  border-top: 1px solid rgba(28, 28, 14, 0.18);
+  color: #3f4034;
   font-size: 11px;
   line-height: 1.65;
 }

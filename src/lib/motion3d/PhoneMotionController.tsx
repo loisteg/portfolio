@@ -31,7 +31,19 @@ import type {
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-const INTERRUPT_EVENTS = ['wheel', 'touchstart'] as const;
+/* Wheel input is hijacked into fly-to navigation below, so only touch
+   gestures can interrupt a flight and hand control back to native scroll. */
+const INTERRUPT_EVENTS = ['touchstart'] as const;
+
+/* Wheel events closer together than this belong to the same physical gesture
+   (trackpad momentum tail); only a fresh gesture starts a new flight. */
+const WHEEL_GESTURE_GAP_MS = 250;
+
+/* A momentum tail decays monotonically, so a delta spiking to at least this
+   magnitude (and well above the previous event) is a fresh push even when it
+   arrives inside the gap window — without this, repeated scroll attempts keep
+   extending the window and the page feels dead. */
+const WHEEL_RESTART_MIN_DELTA = 24;
 
 const PhoneMotionController = ({
   mainRef,
@@ -232,6 +244,86 @@ const PhoneMotionController = ({
       return true;
     };
 
+    /* Native scroll-snap rushes between sections much faster than the nav-bar
+       flight. Routing every wheel gesture through the same fly-to keeps both
+       paths at NAV_DURATION pacing: one gesture moves one section, events
+       during a flight or in a gesture's momentum tail are swallowed. */
+    const resolveNearestSectionIndex = (): number => {
+      let nearestIndex = 0;
+      let nearestDistance = Infinity;
+
+      SECTION_ORDER.forEach((sectionKey, index) => {
+        const element = anchors[sectionKey].sectionRef.current;
+
+        if (!element) {
+          return;
+        }
+
+        const distance = Math.abs(element.getBoundingClientRect().top);
+
+        if (distance < nearestDistance) {
+          nearestDistance = distance;
+          nearestIndex = index;
+        }
+      });
+
+      return nearestIndex;
+    };
+
+    let lastWheelTime = Number.NEGATIVE_INFINITY;
+    let lastWheelDelta = 0;
+
+    const handleWheel = (event: WheelEvent) => {
+      /* Already consumed by the phone's inner scroll bridge, or a pinch-zoom. */
+      if (event.defaultPrevented || event.ctrlKey) {
+        return;
+      }
+
+      if (!activeMotion || activeMotion.setup.isReducedMotion) {
+        return;
+      }
+
+      /* Dominantly horizontal trackpad swipes are not section navigation. */
+      if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) {
+        return;
+      }
+
+      const gap = event.timeStamp - lastWheelTime;
+      const magnitude = Math.abs(event.deltaY);
+      const isMomentumSpike = magnitude >= WHEEL_RESTART_MIN_DELTA
+        && magnitude > Math.abs(lastWheelDelta) * 2;
+      const isFreshGesture = gap > WHEEL_GESTURE_GAP_MS || isMomentumSpike;
+
+      lastWheelTime = event.timeStamp;
+      lastWheelDelta = event.deltaY;
+
+      const currentIndex = resolveNearestSectionIndex();
+
+      /* On the projects screen the phone owns its scrollable content; events
+         bubbling out of it (a scroller hit its end) must not fly the page. */
+      const isOverPhone = event.target instanceof Element
+        && event.target.closest('.phone-screen-frame') !== null;
+      const isPhoneContentGesture = isOverPhone
+        && SECTION_ORDER[currentIndex] === 'projects';
+
+      if (navTween || !isFreshGesture || isPhoneContentGesture) {
+        event.preventDefault();
+        return;
+      }
+
+      const direction = event.deltaY > 0 ? 1 : -1;
+      const targetSection = SECTION_ORDER[currentIndex + direction];
+
+      if (!targetSection) {
+        return;
+      }
+
+      event.preventDefault();
+      navigate(targetSection);
+    };
+
+    window.addEventListener('wheel', handleWheel, { passive: false });
+
     const unregisterNavigation = registerPhoneNavigationHandler(navigate);
     const media = gsap.matchMedia();
     let mountFrame = 0;
@@ -261,6 +353,7 @@ const PhoneMotionController = ({
     void document.fonts.ready.then(refresh, refresh);
 
     return () => {
+      window.removeEventListener('wheel', handleWheel);
       unregisterNavigation();
       navTween?.kill();
       resizeObserver.disconnect();
