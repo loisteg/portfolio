@@ -1,6 +1,7 @@
 import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
 import Navigation from '../../components/Navigation/Navigation';
 import PhoneScreen from '../../features/portfolio/components/PhoneScreen/PhoneScreen';
+import PhoneStage2D from '../../features/portfolio/components/PhoneStage2D/PhoneStage2D';
 import {
   AboutContent,
   ContactContent,
@@ -9,6 +10,7 @@ import {
 } from '../../features/portfolio/components/SectionContent';
 import WebGLFallback from '../../features/portfolio/components/WebGLFallback';
 import { usePortfolioMotionRefs } from '../../features/portfolio/hooks/usePortfolioMotionRefs.hooks';
+import useIsCompactViewport from '../../hooks/useIsCompactViewport';
 import useWebGLSupport from '../../hooks/useWebGLSupport';
 import PhoneExperience from '../../lib/motion3d/PhoneExperience';
 import { useAppReady } from '../../lib/motion3d/useAppReady.hooks';
@@ -18,7 +20,11 @@ import './portfolio-responsive.css';
 
 const PortfolioPage = () => {
   const isWebGLSupported = useWebGLSupport();
-  const isAppReady = useAppReady(isWebGLSupported);
+  const isCompactViewport = useIsCompactViewport();
+  /* Tablets and phones render the plain 2D phone; only the desktop 3D path
+     loads the WebGL model, so only it should gate the loading overlay. */
+  const isThreeDActive = isWebGLSupported && !isCompactViewport;
+  const isAppReady = useAppReady(isThreeDActive);
   const {
     mainRef,
     profileSectionRef,
@@ -42,7 +48,9 @@ const PortfolioPage = () => {
       <Navigation />
       <div className="ambient-light ambient-light--one" aria-hidden="true" />
       <div className="ambient-light ambient-light--two" aria-hidden="true" />
-      {isWebGLSupported ? (
+      {isCompactViewport ? (
+        <PhoneStage2D anchors={anchors} screenRefs={screenRefs} />
+      ) : isWebGLSupported ? (
         <PhoneExperience mainRef={mainRef} anchors={anchors} screenRefs={screenRefs}>
           <PhoneScreen screenRefs={screenRefs} />
         </PhoneExperience>

@@ -56,18 +56,18 @@
 .phone-project-detail__topbar button {
   justify-self: start;
   min-height: 30px;
-  padding: 0 9px;
+  padding: 0 11px;
   color: #2e2f23;
   background: rgba(28, 28, 14, 0.05);
   border: 1px solid rgba(28, 28, 14, 0.16);
   border-radius: 99px;
-  font-size: 8px;
+  font-size: 10px;
   cursor: pointer;
 }
 
 .phone-project-detail__topbar > span {
   color: #6b6c58;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -131,17 +131,17 @@
 }
 
 .phone-project-about h3 {
-  margin: 0 0 7px;
-  font-size: 13px;
+  margin: 0 0 8px;
+  font-size: 16px;
   font-weight: 560;
   line-height: 1.15;
   letter-spacing: -0.03em;
 }
 
 .phone-project-about p {
-  margin: 0 0 6px;
+  margin: 0 0 7px;
   color: #45463a;
-  font-size: 8px;
+  font-size: 11px;
   line-height: 1.45;
 }
 
@@ -159,11 +159,11 @@
 }
 
 .phone-project-about li {
-  padding: 5px 7px;
+  padding: 6px 9px;
   border: 1px solid rgba(28, 28, 14, 0.16);
   border-radius: 99px;
   color: #3a3b2f;
-  font-size: 6px;
+  font-size: 9px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -182,7 +182,7 @@
   display: block;
   margin-bottom: 8px;
   color: #6b6c58;
-  font-size: 7px;
+  font-size: 10px;
   letter-spacing: 0.13em;
   text-transform: uppercase;
 }
@@ -197,9 +197,9 @@
 
 .phone-project-contribution li {
   position: relative;
-  padding-left: 12px;
+  padding-left: 13px;
   color: #45463a;
-  font-size: 8px;
+  font-size: 11px;
   line-height: 1.4;
 }
 
@@ -215,9 +215,9 @@
 }
 
 .phone-project-outcomes p {
-  margin: 0 0 8px;
+  margin: 0 0 9px;
   color: #45463a;
-  font-size: 8px;
+  font-size: 11px;
   line-height: 1.45;
 }
 
@@ -227,9 +227,9 @@
 
 .phone-project-outcomes strong {
   display: block;
-  margin-bottom: 2px;
+  margin-bottom: 3px;
   color: #1f2016;
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 570;
   letter-spacing: -0.01em;
 }
@@ -243,15 +243,15 @@
 
 .phone-project-store-actions a {
   display: grid;
-  min-height: 38px;
-  padding: 0 6px;
+  min-height: 42px;
+  padding: 0 8px;
   place-items: center;
   color: #2e2f23;
   text-align: center;
   background: rgba(255, 255, 255, 0.55);
   border: 1px solid rgba(28, 28, 14, 0.16);
   border-radius: 12px;
-  font-size: 7px;
+  font-size: 10px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }

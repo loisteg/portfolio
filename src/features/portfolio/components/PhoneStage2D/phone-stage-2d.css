@@ -1,0 +1,29 @@
+.phone-2d-stage {
+  position: fixed;
+  z-index: 15;
+  inset: 0;
+
+  /* The phone catches its own pointer events (see .phone-screen-frame); the
+     rest of the stage lets the page beneath receive scroll and clicks. */
+  pointer-events: none;
+
+  /* Opacity is driven by the motion hook so the phone dissolves into the
+     contact section, matching the desktop experience. */
+  will-change: opacity;
+}
+
+.phone-2d {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 303px;
+  height: 660px;
+
+  /* Positioned and sized entirely through the motion hook's transform. */
+  transform-origin: center center;
+  will-change: transform;
+
+  /* The high-density upscaling only matters inside the WebGL projection; the
+     2D phone renders natively at its design size, so drop the zoom. */
+  --phone-screen-resolution: 1;
+}

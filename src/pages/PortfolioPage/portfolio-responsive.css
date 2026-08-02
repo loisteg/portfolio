@@ -44,7 +44,10 @@
   }
 }
 
-@media (max-width: 767px) {
+/* Tablets and phones share the 2D phone, so they share its full-screen,
+   one-section-per-viewport layout (100svh + phone-anchored positions) — this
+   keeps sections from overlapping and the phone correctly placed. */
+@media (max-width: 1023px) {
   :root {
     --nav-height: 42px;
   }

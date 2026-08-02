@@ -40,9 +40,6 @@ const MetricsLayer = ({ layerRef }: PhoneLayerProps) => (
         </article>
       ))}
     </div>
-    <p className="metrics-badge">
-      <i aria-hidden="true" /> {portfolioContent.metricsBadge}
-    </p>
   </div>
 );
 

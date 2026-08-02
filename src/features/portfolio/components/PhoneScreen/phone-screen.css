@@ -93,7 +93,7 @@
 
 .profile-portrait {
   position: relative;
-  height: 286px;
+  height: 268px;
   overflow: hidden;
   background: #e0ddc8;
   border: 1px solid rgba(28, 28, 14, 0.14);
@@ -118,10 +118,10 @@
 }
 
 .phone-profile-heading p {
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 560;
-  letter-spacing: 0.015em;
-  line-height: 1.2;
+  letter-spacing: 0.01em;
+  line-height: 1.15;
   text-transform: uppercase;
   /* Content keeps the intended line break; render it without extra markup. */
   white-space: pre-line;
@@ -131,25 +131,25 @@
   display: block;
   margin-top: 8px;
   color: #45463a;
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 0.02em;
-  line-height: 1.5;
+  line-height: 1.45;
 }
 
 .phone-profile-heading small {
   display: block;
   margin-top: 8px;
   color: #6b6c58;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .phone-profile-intro {
-  margin: 6px 5px 0;
-  padding-top: 10px;
+  margin: 8px 5px 0;
+  padding-top: 11px;
   border-top: 1px solid rgba(28, 28, 14, 0.18);
   color: #3f4034;
-  font-size: 11px;
-  line-height: 1.5;
+  font-size: 14px;
+  line-height: 1.45;
 }

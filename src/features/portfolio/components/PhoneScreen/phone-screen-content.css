@@ -6,7 +6,7 @@
   display: block;
   margin-bottom: 8px;
   color: #6b6c58;
-  font-size: 9px;
+  font-size: 12px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
@@ -23,7 +23,7 @@
 .metrics-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 9px;
+  gap: 12px;
 }
 
 .metric-card {
@@ -31,8 +31,8 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  min-height: 190px;
-  padding: 16px;
+  min-height: 205px;
+  padding: 18px;
   overflow: hidden;
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.4));
   border: 1px solid rgba(28, 28, 14, 0.14);
@@ -52,16 +52,16 @@
 
 .metric-card > span {
   position: absolute;
-  top: 15px;
-  left: 16px;
+  top: 16px;
+  left: 18px;
   color: #74755f;
-  font-size: 8px;
+  font-size: 11px;
   letter-spacing: 0.12em;
 }
 
 .metric-card strong {
   margin-bottom: 10px;
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 520;
   line-height: 0.9;
   letter-spacing: -0.075em;
@@ -70,9 +70,9 @@
 .metric-card p {
   margin: 0;
   color: #45463a;
-  font-size: 8px;
-  line-height: 1.5;
-  letter-spacing: 0.09em;
+  font-size: 12px;
+  line-height: 1.35;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
@@ -108,7 +108,7 @@
   margin: 0;
   max-width: 250px;
   color: #45463a;
-  font-size: 11px;
+  font-size: 13px;
   line-height: 1.5;
 }
 
@@ -162,13 +162,13 @@
 
 .phone-project-card__copy > span {
   color: #74755f;
-  font-size: 8px;
+  font-size: 11px;
   letter-spacing: 0.14em;
 }
 
 .phone-project-card__copy strong {
   margin-top: auto;
-  font-size: 17px;
+  font-size: 21px;
   font-weight: 540;
   line-height: 1.1;
   letter-spacing: -0.035em;
@@ -178,7 +178,7 @@
   margin-top: 10px;
   padding-bottom: 3px;
   border-bottom: 1px solid rgba(28, 28, 14, 0.3);
-  font-size: 7px;
+  font-size: 10px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
