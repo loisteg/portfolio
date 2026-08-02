@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
 
-import { registerSectionNavigationListener } from '../../../../lib/motion3d/phone-navigation';
+import {
+  acquireWheelNavigationLock,
+  registerSectionNavigationListener,
+} from '../../../../lib/motion3d/phone-navigation';
 
 /* Blocks page scrolling while the expanded project is open so a stray wheel
    or touch gesture cannot fly the story to another section. The phone's own
@@ -11,6 +14,10 @@ export const usePageScrollLock = (isLocked: boolean): void => {
     if (!isLocked) {
       return undefined;
     }
+
+    /* The fly-to wheel navigation ignores the overflow lock (it tweens the
+       scroll position itself), so it is locked out explicitly too. */
+    const releaseWheelNavigationLock = acquireWheelNavigationLock();
 
     const rootStyle = document.documentElement.style;
     const previousOverflow = rootStyle.overflow;
@@ -29,6 +36,7 @@ export const usePageScrollLock = (isLocked: boolean): void => {
     return () => {
       rootStyle.overflow = previousOverflow;
       document.removeEventListener('touchmove', handleTouchMove);
+      releaseWheelNavigationLock();
     };
   }, [isLocked]);
 };

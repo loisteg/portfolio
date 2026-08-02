@@ -21,6 +21,29 @@ type SectionNavigationListener = (section: SectionKey) => void;
 
 const sectionNavigationListeners = new Set<SectionNavigationListener>();
 
+/* While the expanded project detail is open the page is scroll-locked, but
+   the DOM screen covers only part of the visible phone — wheel gestures over
+   the 3D bezel (or anywhere off the phone) still reach the window-level
+   fly-to handler. Feature UI acquires this lock so wheel input can never
+   change the section until the lock is released; explicit navigation (the
+   nav bar) stays available. */
+let wheelNavigationLockCount = 0;
+
+export const acquireWheelNavigationLock = (): (() => void) => {
+  wheelNavigationLockCount += 1;
+
+  let isReleased = false;
+
+  return () => {
+    if (!isReleased) {
+      isReleased = true;
+      wheelNavigationLockCount -= 1;
+    }
+  };
+};
+
+export const isWheelNavigationLocked = (): boolean => wheelNavigationLockCount > 0;
+
 /* Fired the moment a phone-aware fly-to navigation starts, before the page
    scroll moves — feature UI (e.g. the expanded project view with its page
    scroll lock) can reset itself so the flight runs against a normal page. */

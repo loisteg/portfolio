@@ -174,16 +174,8 @@
   letter-spacing: -0.035em;
 }
 
-.phone-project-card__category {
-  margin: 3px 0 12px;
-  color: #6b6c58;
-  font-size: 7px;
-  line-height: 1.4;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.phone-project-card__copy small {
+.phone-project-card__action {
+  margin-top: 10px;
   padding-bottom: 3px;
   border-bottom: 1px solid rgba(28, 28, 14, 0.3);
   font-size: 7px;

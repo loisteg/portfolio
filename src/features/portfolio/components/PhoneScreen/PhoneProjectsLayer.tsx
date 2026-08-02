@@ -137,8 +137,7 @@ const PhoneProjectsLayer = ({ layerRef }: PhoneProjectsLayerProps) => {
                 <img src={project.icon.src} alt="" className="phone-project-card__icon" />
                 <span aria-hidden="true">0{index + 1}</span>
                 <strong>{project.name}</strong>
-                <span className="phone-project-card__category">{project.category}</span>
-                <small>{portfolioContent.phone.projectAction}</small>
+                <small className="phone-project-card__action">{portfolioContent.phone.projectAction}</small>
               </span>
               {project.screens[0] ? (
                 <span className="phone-project-card__preview" aria-hidden="true">

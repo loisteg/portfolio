@@ -20,6 +20,7 @@ import {
 import { buildSectionTimeline } from './phone-motion-timeline.helpers';
 import {
   getRevealController,
+  isWheelNavigationLocked,
   notifySectionNavigation,
   registerPhoneNavigationHandler,
 } from './phone-navigation';
@@ -306,7 +307,11 @@ const PhoneMotionController = ({
       const isPhoneContentGesture = isOverPhone
         && SECTION_ORDER[currentIndex] === 'projects';
 
-      if (navTween || !isFreshGesture || isPhoneContentGesture) {
+      /* The wheel-navigation lock (expanded project detail) swallows the
+         gesture wherever the cursor is — including over the 3D bezel, which
+         lives outside the DOM screen. Bookkeeping above still ran, so a
+         momentum tail cannot fly the page the instant the lock releases. */
+      if (navTween || !isFreshGesture || isPhoneContentGesture || isWheelNavigationLocked()) {
         event.preventDefault();
         return;
       }

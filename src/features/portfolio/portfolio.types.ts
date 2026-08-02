@@ -28,7 +28,6 @@ export type ProjectOutcome = {
 export type Project = {
   id: string;
   name: string;
-  category: string;
   summary: string;
   headline: string;
   description: readonly string[];

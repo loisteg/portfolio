@@ -6,10 +6,10 @@ import { Environment } from '@react-three/drei';
    surfaces. Analytic lights only add key/fill accents on dielectric parts. */
 const StudioLights = () => (
   <>
-    <ambientLight intensity={0.2} />
-    <directionalLight position={[-5, 7, 8]} intensity={1.4} color="#fff4e4" />
-    <directionalLight position={[6, 1, 4]} intensity={0.8} color="#dfe6f2" />
-    <Environment files="/env/studio_small_08_1k.hdr" />
+    <ambientLight intensity={0.15} />
+    <directionalLight position={[-5, 7, 8]} intensity={1} color="#fff4e4" />
+    <directionalLight position={[6, 1, 4]} intensity={0.6} color="#dfe6f2" />
+    <Environment files="/env/studio_small_08_1k.hdr" environmentIntensity={0.25} />
   </>
 );
 

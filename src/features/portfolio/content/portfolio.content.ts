@@ -65,7 +65,6 @@ export const portfolioContent = {
     {
       id: 'splynx-field-service',
       name: 'Splynx Field Service',
-      category: 'B2B operations',
       summary: 'A production mobile platform designed around complex operational and service workflows.',
       headline: 'Built for complex operations. Designed for long-term growth.',
       description: [
@@ -122,7 +121,6 @@ export const portfolioContent = {
     {
       id: 'myisp',
       name: 'MyISP',
-      category: 'Mobile product',
       summary: 'A reliable mobile experience built for frequent, business-critical user interactions.',
       headline: 'Reliable experiences for business-critical interactions.',
       description: [
