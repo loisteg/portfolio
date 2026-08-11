@@ -190,6 +190,7 @@
   height: 170px;
   overflow: hidden;
   transform: rotate(2deg);
+  background: rgba(255, 255, 255, 0.45);
   border: 1px solid rgba(28, 28, 14, 0.16);
   border-radius: 16px;
   box-shadow: -14px 20px 36px rgba(84, 82, 55, 0.32);
@@ -199,12 +200,25 @@
   transform: rotate(-2deg);
 }
 
+.phone-project-card:nth-child(3) .phone-project-card__preview {
+  transform: rotate(1deg);
+}
+
 .phone-project-card__preview img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: top;
+}
+
+.phone-project-card[data-project-id='myisp'] .phone-project-card__preview img {
+  transform: scale(1.18);
+  transform-origin: 50% 0;
+}
+
+.phone-project-card[data-project-id='splynx-field-service'] .phone-project-card__preview img {
+  object-position: 50% 60%;
 }
 
 .phone-screen__glare {

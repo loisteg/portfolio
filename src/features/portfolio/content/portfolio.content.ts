@@ -41,7 +41,7 @@ export const portfolioContent = {
   location: 'Open to remote opportunities',
   metrics: [
     { value: '4+', label: 'Years building production mobile applications' },
-    { value: '5', label: 'Companies' },
+    { value: '2+', label: 'Years of mobile engineering leadership' },
     { value: '70K+', label: 'Users reached by products I’ve worked on' },
     { value: '99.5%+', label: 'Crash-free sessions' },
   ],
@@ -61,38 +61,65 @@ export const portfolioContent = {
       opensInNewTab: true,
     },
   ],
+  cv: {
+    label: 'Open CV',
+    ariaLabel: 'Open CV in Google Docs',
+    href: 'https://docs.google.com/document/d/1o2mcE7pessBp4tPspLwRPXM7lLSxfJ2w1bsfc3WzVIU/edit?usp=sharing',
+    opensInNewTab: true,
+  },
   projects: [
     {
       id: 'splynx-field-service',
       name: 'Splynx Field Service',
-      summary: 'A production mobile platform designed around complex operational and service workflows.',
-      headline: 'Built for complex operations. Designed for long-term growth.',
-      description: [
-        'A production mobile application supporting operational and service workflows where reliability, maintainability, and consistent delivery are essential.',
-        'As Mobile Team Lead, I owned the technical direction and end-to-end delivery — from architecture and planning to implementation, QA coordination, CI/CD, and App Store and Google Play releases.',
-        'I also created a shared mobile core reused across multiple applications, reducing duplicated logic and establishing a consistent foundation for future development.',
+      summary: 'An offline-first field operations platform for ISP technicians.',
+      headline: 'Field work that stays reliable — even when the network does not.',
+      context: [
+        { label: 'Role', value: 'Mobile Team Lead' },
+        { label: 'Scope', value: 'iOS · Android' },
+        { label: 'Team', value: 'Mobile · Product · Design · QA · Backend' },
+        { label: 'Delivery', value: 'CI/CD · Store releases' },
       ],
-      technologies: ['Architecture', 'Shared Core', 'CI/CD'],
+      caseStudy: [
+        {
+          label: 'Problem',
+          title: 'Technicians could not depend on a stable connection.',
+          description:
+            'The app had to support task updates, attachments, equipment, maps, and on-site reporting in low-connectivity environments without losing work or breaking backend consistency.',
+        },
+        {
+          label: 'Solution',
+          title: 'I led the move to an offline-first architecture.',
+          description:
+            'I researched local persistence and synchronization options, validated iOS, Android, and backend constraints, compared trade-offs, and defined the technical approach. I organized delivery across Mobile, Product, Design, QA, and Backend, introduced a shared mobile core, CI/CD, and unit, integration, and E2E quality gates.',
+        },
+        {
+          label: 'Result',
+          title: 'Reliable field delivery with a reusable foundation.',
+          description:
+            'Technicians can continue critical workflows offline and synchronize safely when connectivity returns. The product reached 99.95%+ crash-free sessions, while the shared core and automated delivery pipeline reduced duplication and made releases more predictable.',
+        },
+      ],
+      technologies: ['React Native', 'Offline-first', 'Shared Core', 'CI/CD'],
       contribution: [
-        'Mobile architecture and technical direction',
-        'Shared core library used across applications',
-        'CI/CD and multi-environment delivery',
-        'UI and technical foundation modernization',
-        'Engineering standards and code reviews',
-        'Team mentoring and release coordination',
+        'Offline feasibility research and architecture decision',
+        'Mobile technical leadership and delivery planning',
+        'Shared mobile core and synchronization boundaries',
+        'Unit, integration, and E2E testing strategy',
+        'CI/CD, multi-environment builds, and store releases',
+        'Cross-functional coordination and team mentoring',
       ],
       outcomes: [
         {
-          title: 'Shared foundation',
-          description: 'Reusable logic across multiple mobile applications.',
+          title: '99.95%+ crash-free sessions',
+          description: 'Production stability across demanding field workflows.',
         },
         {
-          title: 'Reliable delivery',
-          description: 'Repeatable development and production release workflows.',
+          title: 'Offline continuity',
+          description: 'Critical work continues without a reliable connection and syncs on return.',
         },
         {
-          title: 'Modernized platform',
-          description: 'A more maintainable foundation for future product growth.',
+          title: 'Predictable delivery',
+          description: 'Shared foundations, automated checks, and repeatable release workflows.',
         },
       ],
       icon: {
@@ -101,8 +128,8 @@ export const portfolioContent = {
       },
       screens: [
         {
-          src: '/projects/field-service/shot-1.jpg',
-          alt: 'Splynx Field Service calendar view with scheduled tasks',
+          src: '/projects/field-service/cover.png',
+          alt: 'Splynx Field Service store artwork featuring a field technician',
         },
         {
           src: '/projects/field-service/shot-2.jpg',
@@ -121,33 +148,55 @@ export const portfolioContent = {
     {
       id: 'myisp',
       name: 'MyISP',
-      summary: 'A reliable mobile experience built for frequent, business-critical user interactions.',
-      headline: 'Reliable experiences for business-critical interactions.',
-      description: [
-        'A production React Native application built around complex workflows, frequent operations, and dependable client-server communication.',
-        'My work focused on translating complicated product requirements into clear mobile experiences while maintaining responsive performance, predictable state management, robust error handling, and production stability.',
+      summary: 'A modern customer portal for everyday ISP self-service.',
+      headline: 'Complex ISP self-service made clear, stable, and scalable.',
+      context: [
+        { label: 'Role', value: 'Senior React Native Engineer' },
+        { label: 'Focus', value: 'Redesign · Refactoring' },
+        { label: 'Team', value: 'Mobile · Product · Design · QA · Backend' },
+        { label: 'Scope', value: 'iOS · Android' },
       ],
-      technologies: ['React Native', 'Reliability', 'Scale'],
+      caseStudy: [
+        {
+          label: 'Problem',
+          title: 'A mature product had outgrown its mobile foundation.',
+          description:
+            'Billing, payments, services, usage data, and support workflows had accumulated legacy patterns and inconsistent UX, increasing the cost and risk of every product change.',
+        },
+        {
+          label: 'Solution',
+          title: 'I modernized the product without disrupting daily use.',
+          description:
+            'I translated complex requirements into a complete mobile redesign, introduced reusable React Native patterns, strengthened state and error handling, and rebuilt REST integrations in close collaboration with Product, Design, QA, and Backend.',
+        },
+        {
+          label: 'Result',
+          title: 'A clearer experience that increased conversion by 15%.',
+          description:
+            'After the redesign and refactoring, users engaged more confidently with key journeys and conversion increased by 15%. The new foundation also improved production reliability and made future product delivery easier to scale.',
+        },
+      ],
+      technologies: ['React Native', 'REST APIs', 'Modernization', 'Scale'],
       contribution: [
-        'Production React Native feature development',
-        'Complex REST API integrations',
         'Complete application redesign',
-        'Migration from legacy code to modern standards',
-        'Error handling and state management',
+        'Legacy migration and reusable mobile patterns',
+        'Complex REST API integrations',
+        'Predictable state and resilient error handling',
         'Performance and stability improvements',
+        'QA coordination and release readiness',
       ],
       outcomes: [
         {
-          title: 'Complex workflows simplified',
-          description: 'Business logic transformed into understandable mobile experiences.',
+          title: '15% conversion uplift',
+          description: 'Measured after the product redesign and technical refactoring.',
         },
         {
-          title: 'Production reliability',
-          description: 'Stable behavior across frequent and critical operations.',
+          title: 'Simplified self-service',
+          description: 'Dense ISP business logic translated into clear customer journeys.',
         },
         {
-          title: 'Maintainable implementation',
-          description: 'Clear architecture and reusable engineering patterns.',
+          title: 'Modernized foundation',
+          description: 'Reusable patterns made ongoing product delivery safer and faster.',
         },
       ],
       icon: {
@@ -156,8 +205,8 @@ export const portfolioContent = {
       },
       screens: [
         {
-          src: '/projects/myisp/shot-1.png',
-          alt: 'MyISP dashboard with account balance and quick actions',
+          src: '/projects/myisp/cover.png',
+          alt: 'MyISP dashboard shown in the first Google Play store screenshot',
         },
         {
           src: '/projects/myisp/shot-2.png',
@@ -171,6 +220,84 @@ export const portfolioContent = {
       storeLinks: {
         appStore: 'https://apps.apple.com/ua/app/myisp-portal/id1462886761',
         googlePlay: 'https://play.google.com/store/apps/details?id=com.splynx.portal',
+      },
+    },
+    {
+      id: 'splynx-comms-app',
+      name: 'Splynx CommsApp',
+      summary: 'A real-time mobile workspace for ISP support teams.',
+      headline: 'Real-time customer support, untethered from the desk.',
+      context: [
+        { label: 'Role', value: 'Mobile Team Lead' },
+        { label: 'Product', value: 'New app launch' },
+        { label: 'Team', value: 'Mobile · Product · Design · QA · Backend' },
+        { label: 'Delivery', value: 'Architecture · Google Play' },
+      ],
+      caseStudy: [
+        {
+          label: 'Problem',
+          title: 'Support teams were tied to desktop workflows.',
+          description:
+            'Agents needed to handle tickets and customer conversations from anywhere, while the mobile product had to keep multiple communication streams current and dependable in real time.',
+        },
+        {
+          label: 'Solution',
+          title: 'I led a real-time mobile architecture and delivery plan.',
+          description:
+            'I designed the React Native foundation and WebSocket integration, including connection lifecycle, event synchronization, and recovery states. I also adopted and evolved the shared core library to reuse proven infrastructure across mobile products. I coordinated Mobile, Product, Design, QA, and Backend, established CI/CD, and shaped unit, integration, and E2E coverage around the critical support flows.',
+        },
+        {
+          label: 'Result',
+          title: 'A unified support workflow with 99.98%+ crash-free sessions.',
+          description:
+            'The launched app brought tickets, WhatsApp messages, canned replies, customer context, and push notifications into one mobile workspace while maintaining more than 99.98% crash-free sessions.',
+        },
+      ],
+      technologies: ['React Native', 'WebSocket', 'Shared Core', 'Push Notifications', 'CI/CD'],
+      contribution: [
+        'Mobile architecture and end-to-end delivery leadership',
+        'Real-time WebSocket integration and synchronization model',
+        'Shared core library adoption and evolution',
+        'Tickets, messaging, customer context, and push flows',
+        'Unit, integration, and E2E testing strategy',
+        'CI/CD, release readiness, and Google Play delivery',
+        'Cross-functional planning and integration coordination',
+      ],
+      outcomes: [
+        {
+          title: '99.98%+ crash-free sessions',
+          description: 'Production stability for real-time, business-critical communication.',
+        },
+        {
+          title: 'Support from anywhere',
+          description: 'Agents can respond to tickets and messages away from the desktop.',
+        },
+        {
+          title: 'One integrated workflow',
+          description: 'Tickets, conversations, notifications, and customer context in one app.',
+        },
+      ],
+      icon: {
+        src: '/projects/comms-app/icon.webp',
+        alt: 'Splynx CommsApp icon',
+      },
+      screens: [
+        {
+          src: '/projects/comms-app/shot-1.webp',
+          alt: 'Splynx CommsApp product overview for mobile ISP support',
+        },
+        {
+          src: '/projects/comms-app/shot-2.webp',
+          alt: 'Splynx CommsApp tickets dashboard',
+        },
+        {
+          src: '/projects/comms-app/shot-3.webp',
+          alt: 'Splynx CommsApp ticket conversation screen',
+        },
+      ],
+      storeLinks: {
+        appStore: 'https://apps.apple.com/ua/app/splynx-commsapp/id6749141439?l=uk',
+        googlePlay: 'https://play.google.com/store/apps/details?id=com.splynx.communication',
       },
     },
   ],
@@ -224,6 +351,7 @@ export const portfolioContent = {
     projectsIntro: 'Products shaped by complex requirements, real users, and production responsibility.',
     projectAction: 'Tap to explore',
     projectBackAction: 'Projects',
+    caseStudyHeading: 'Problem, solution, and result',
     contributionHeading: 'My contribution',
     outcomesHeading: 'Key outcomes',
     projectScreensLabel: 'Project screens',

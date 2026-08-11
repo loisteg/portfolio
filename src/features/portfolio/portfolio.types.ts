@@ -15,6 +15,13 @@ export type ContactLink = {
   opensInNewTab: boolean;
 };
 
+export type CvLink = {
+  label: string;
+  ariaLabel: string;
+  href: string;
+  opensInNewTab: boolean;
+};
+
 export type ProjectImage = {
   src: string;
   alt: string;
@@ -25,20 +32,32 @@ export type ProjectOutcome = {
   description: string;
 };
 
+export type ProjectContextItem = {
+  label: string;
+  value: string;
+};
+
+export type ProjectCaseStudyStep = {
+  label: string;
+  title: string;
+  description: string;
+};
+
 export type Project = {
   id: string;
   name: string;
   summary: string;
   headline: string;
-  description: readonly string[];
+  context: readonly ProjectContextItem[];
+  caseStudy: readonly ProjectCaseStudyStep[];
   technologies: readonly string[];
   contribution: readonly string[];
   outcomes: readonly ProjectOutcome[];
   icon: ProjectImage;
   screens: readonly ProjectImage[];
   storeLinks: {
-    appStore: string;
-    googlePlay: string;
+    appStore?: string;
+    googlePlay?: string;
   };
 };
 
@@ -60,6 +79,7 @@ export type PortfolioContent = {
   metrics: readonly Metric[];
   metricsBadge: string;
   contacts: readonly ContactLink[];
+  cv: CvLink;
   projects: readonly Project[];
   navigation: readonly NavigationItem[];
   sections: {
@@ -92,6 +112,7 @@ export type PortfolioContent = {
     projectsIntro: string;
     projectAction: string;
     projectBackAction: string;
+    caseStudyHeading: string;
     contributionHeading: string;
     outcomesHeading: string;
     projectScreensLabel: string;

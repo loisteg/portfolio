@@ -77,5 +77,15 @@ export const ContactContent = ({ contactRef }: Pick<SectionContentProps, 'contac
         </a>
       ))}
     </div>
+    <a
+      className="button button--primary contact-card__action"
+      href={portfolioContent.cv.href}
+      target={portfolioContent.cv.opensInNewTab ? '_blank' : undefined}
+      rel={portfolioContent.cv.opensInNewTab ? 'noreferrer' : undefined}
+      aria-label={portfolioContent.cv.ariaLabel}
+      data-reveal="item"
+    >
+      {portfolioContent.cv.label} <span aria-hidden="true">↗</span>
+    </a>
   </div>
 );

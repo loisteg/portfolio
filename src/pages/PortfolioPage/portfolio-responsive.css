@@ -258,6 +258,7 @@
   }
 
   .contact-card .contact-card__action {
+    column-gap: 16px;
     margin-top: 14px;
   }
 

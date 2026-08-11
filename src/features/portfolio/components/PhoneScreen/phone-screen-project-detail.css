@@ -90,6 +90,7 @@
    the nearest card, making the strip feel stuck. */
 .phone-project-screens {
   display: flex;
+  align-items: stretch;
   gap: 8px;
   padding-bottom: 4px;
   overflow-x: auto;
@@ -109,9 +110,13 @@
 }
 
 .phone-project-shot {
+  display: grid;
   flex: 0 0 118px;
+  aspect-ratio: 784 / 1394;
   margin: 0;
   overflow: hidden;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.45);
   border: 1px solid rgba(28, 28, 14, 0.14);
   border-radius: 18px;
 }
@@ -119,7 +124,9 @@
 .phone-project-shot img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: contain;
+  object-position: center top;
 }
 
 .phone-project-about {
@@ -138,15 +145,35 @@
   letter-spacing: -0.03em;
 }
 
-.phone-project-about p {
-  margin: 0 0 7px;
-  color: #45463a;
-  font-size: 11px;
-  line-height: 1.45;
+.phone-project-context {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  margin: 10px 0 0;
 }
 
-.phone-project-about p:last-of-type {
-  margin-bottom: 0;
+.phone-project-context div {
+  min-width: 0;
+  padding: 8px;
+  background: rgba(28, 28, 14, 0.035);
+  border: 1px solid rgba(28, 28, 14, 0.09);
+  border-radius: 10px;
+}
+
+.phone-project-context dt {
+  margin-bottom: 4px;
+  color: #777862;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.phone-project-context dd {
+  margin: 0;
+  color: #323328;
+  font-size: 9px;
+  font-weight: 560;
+  line-height: 1.35;
 }
 
 .phone-project-about ul {
@@ -166,6 +193,73 @@
   font-size: 9px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.phone-project-story {
+  display: grid;
+  gap: 7px;
+  margin-top: 9px;
+}
+
+.phone-project-story__step {
+  position: relative;
+  padding: 12px 12px 12px 15px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(28, 28, 14, 0.12);
+  border-radius: 16px;
+}
+
+.phone-project-story__step::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 3px;
+  background: #9b7667;
+  content: "";
+}
+
+.phone-project-story__step:nth-child(2)::before {
+  background: #8a8c60;
+}
+
+.phone-project-story__step:nth-child(3)::before {
+  background: #5c8065;
+}
+
+.phone-project-story__step > span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #6b6c58;
+  font-size: 9px;
+  font-weight: 620;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.phone-project-story__step i {
+  color: #9b9c84;
+  font-size: 8px;
+  font-style: normal;
+  font-weight: 520;
+}
+
+.phone-project-story__step h4 {
+  margin: 7px 0 5px;
+  color: #202116;
+  font-size: 13px;
+  font-weight: 570;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+
+.phone-project-story__step p {
+  margin: 0;
+  color: #45463a;
+  font-size: 10.5px;
+  line-height: 1.48;
 }
 
 .phone-project-contribution,
@@ -236,7 +330,7 @@
 
 .phone-project-store-actions {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(108px, 1fr));
   gap: 7px;
   margin-top: 9px;
 }

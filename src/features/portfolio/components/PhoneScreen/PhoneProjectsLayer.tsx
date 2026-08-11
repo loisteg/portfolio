@@ -17,37 +17,71 @@ const StoreAction = ({ href, label, tabIndex }: StoreActionProps) => (
   </a>
 );
 
-const ProjectDetail = ({ project, isOpen, backButtonRef, onBack }: ProjectDetailProps) => (
-  <article
-    className={`phone-project-detail${isOpen ? ' phone-project-detail--open' : ''}`}
-    aria-hidden={!isOpen}
-  >
-    <header className="phone-project-detail__topbar">
-      <button ref={backButtonRef} type="button" onClick={onBack} tabIndex={isOpen ? 0 : -1}>
-        <span aria-hidden="true">←</span> {portfolioContent.phone.projectBackAction}
-      </button>
-      <span>{project.name}</span>
-    </header>
-    <div className="phone-project-detail__body phone-scrollable">
-      <div
-        className="phone-project-screens phone-scrollable-x"
-        role="group"
-        aria-label={portfolioContent.phone.projectScreensLabel}
-      >
-        {project.screens.map((screen) => (
-          <figure key={screen.src} className="phone-project-shot">
-            <img src={screen.src} alt={screen.alt} loading="lazy" draggable={false} />
-          </figure>
-        ))}
-      </div>
+const ProjectDetail = ({ project, isOpen, backButtonRef, onBack }: ProjectDetailProps) => {
+  const bodyRef = useRef<HTMLDivElement>(null);
+  const screensRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    bodyRef.current?.scrollTo({ top: 0, behavior: 'auto' });
+    screensRef.current?.scrollTo({ left: 0, behavior: 'auto' });
+  }, [isOpen, project.id]);
+
+  return (
+    <article
+      className={`phone-project-detail${isOpen ? ' phone-project-detail--open' : ''}`}
+      aria-hidden={!isOpen}
+    >
+      <header className="phone-project-detail__topbar">
+        <button ref={backButtonRef} type="button" onClick={onBack} tabIndex={isOpen ? 0 : -1}>
+          <span aria-hidden="true">←</span> {portfolioContent.phone.projectBackAction}
+        </button>
+        <span>{project.name}</span>
+      </header>
+      <div ref={bodyRef} className="phone-project-detail__body phone-scrollable">
+        <div
+          ref={screensRef}
+          className="phone-project-screens phone-scrollable-x"
+          role="group"
+          aria-label={portfolioContent.phone.projectScreensLabel}
+        >
+          {project.screens.map((screen) => (
+            <figure key={screen.src} className="phone-project-shot">
+              <img src={screen.src} alt={screen.alt} loading="lazy" draggable={false} />
+            </figure>
+          ))}
+        </div>
       <section className="phone-project-about">
         <h3>{project.headline}</h3>
-        {project.description.map((paragraph) => (
-          <p key={paragraph}>{paragraph}</p>
-        ))}
+        <dl className="phone-project-context">
+          {project.context.map((item) => (
+            <div key={item.label}>
+              <dt>{item.label}</dt>
+              <dd>{item.value}</dd>
+            </div>
+          ))}
+        </dl>
         <ul>
           {project.technologies.map((technology) => <li key={technology}>{technology}</li>)}
         </ul>
+      </section>
+      <section
+        className="phone-project-story"
+        aria-label={portfolioContent.phone.caseStudyHeading}
+      >
+        {project.caseStudy.map((step, index) => (
+          <article key={step.label} className="phone-project-story__step">
+            <span>
+              <i aria-hidden="true">0{index + 1}</i>
+              {step.label}
+            </span>
+            <h4>{step.title}</h4>
+            <p>{step.description}</p>
+          </article>
+        ))}
       </section>
       <section className="phone-project-contribution">
         <span>{portfolioContent.phone.contributionHeading}</span>
@@ -65,20 +99,25 @@ const ProjectDetail = ({ project, isOpen, backButtonRef, onBack }: ProjectDetail
         ))}
       </section>
       <div className="phone-project-store-actions">
-        <StoreAction
-          href={project.storeLinks.appStore}
-          label={portfolioContent.phone.appStoreAction}
-          tabIndex={isOpen ? 0 : -1}
-        />
-        <StoreAction
-          href={project.storeLinks.googlePlay}
-          label={portfolioContent.phone.googlePlayAction}
-          tabIndex={isOpen ? 0 : -1}
-        />
+        {project.storeLinks.appStore ? (
+          <StoreAction
+            href={project.storeLinks.appStore}
+            label={portfolioContent.phone.appStoreAction}
+            tabIndex={isOpen ? 0 : -1}
+          />
+        ) : null}
+        {project.storeLinks.googlePlay ? (
+          <StoreAction
+            href={project.storeLinks.googlePlay}
+            label={portfolioContent.phone.googlePlayAction}
+            tabIndex={isOpen ? 0 : -1}
+          />
+        ) : null}
       </div>
-    </div>
-  </article>
-);
+      </div>
+    </article>
+  );
+};
 
 const PhoneProjectsLayer = ({ layerRef }: PhoneProjectsLayerProps) => {
   const [displayedProject, setDisplayedProject] = useState<Project | null>(null);
@@ -128,6 +167,7 @@ const PhoneProjectsLayer = ({ layerRef }: PhoneProjectsLayerProps) => {
             <button
               key={project.id}
               className="phone-project-card"
+              data-project-id={project.id}
               type="button"
               tabIndex={isDetailOpen ? -1 : 0}
               aria-label={`${portfolioContent.phone.projectAction}: ${project.name}`}
